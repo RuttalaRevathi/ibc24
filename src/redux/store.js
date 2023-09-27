@@ -10,8 +10,8 @@ import cartoonReducer from '../redux/reducers/cartoonReducer';
 import healthReducer from '../redux/reducers/healthReducer';
 import stateReducer from './reducers/stateReducer';
 import chhattisgarhReducer from './reducers/chhattisgarhReducer';
-import nationalReducer from '../redux/reducers/nationalReducer';
-import interNationalReducer from '../redux/reducers/interNationalReducer';
+import blogReducer from './reducers/blogReducer';
+import religionReducer from './reducers/religionReducer';
 import sportsReducer from '../redux/reducers/sportsReducer';
 import businessReducer from '../redux/reducers/businessReducer';
 import upReducer from './reducers/upReducer';
@@ -37,16 +37,16 @@ import articleDetailReducer from '../redux/reducers/articleDetailReducer';
 import punjabReducer from './reducers/punjabReducer';
 import newsReducer from '../redux/reducers/newsReducer';
 import menuReducer from '../redux/reducers/menuReducer';
-
-
+import sarkariyojanaReducer from '../redux/reducers/sarkariyojanaReducer';
+import assemblyelectionReducer from '../redux/reducers/assemblyelectionReducer';
 
 
 const rootReducer = combineReducers({sliderReducer,latestNewsReducer,countryReducer,
 cinemaReducer,rasiPhalauReducer,cartoonReducer,healthReducer,stateReducer,chhattisgarhReducer,
-nationalReducer,interNationalReducer,sportsReducer,businessReducer,upReducer,relatedReducer,
+blogReducer,religionReducer,sportsReducer,businessReducer,upReducer,relatedReducer,
 photosGalleryReducer,worldReducer,khabarBebakReducer,madhyapradeshReducer,cityReducer,
 entertainmentReducer,hpReducer,videoReducer,bhopalReducer,indorReducer,jabalpurReducer,
 gwaliorReducer,raipurReducer,bilaspurReducer,biharReducer,maharashtraReducer,haryanaReducer,
-articleDetailReducer,punjabReducer,newsReducer,menuReducer,
+articleDetailReducer,punjabReducer,newsReducer,menuReducer,sarkariyojanaReducer,assemblyelectionReducer,
 });
 export const store = createStore(rootReducer, applyMiddleware(thunk));

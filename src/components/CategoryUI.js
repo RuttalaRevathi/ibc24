@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Text,
   View,
@@ -20,79 +20,56 @@ import FastImage from 'react-native-fast-image';
 import CategoryComponentOne from './CategoryComponentOne';
 import CategoryComponentTwo from './CategoryComponentTwo';
 
-const sharecall = (name) => {
-  const Link_Url = ShareUrl + name;
-  Share.share({
-    message: Link_Url,
-  })
-    .then((result) => console.log(result))
-    .then((error) => console.log(error));
-};
-function  CategoryUI(props, { navigation }) {
+function CategoryUI(props, { navigation }) {
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
-    // console.log(props.data,"categorydata");            
-  })
-  const renderItemOne = ({item}) => (
-    <CategoryComponentOne
-         item={item}
-         propsdata={props.data?.data}
-         navigation={ props?.navigation}
+    // Use props.data?.data as the source of articles
+    if (props.data?.data) {
+      setArticles(props.data?.data);
+    }
+  }, [props.data?.data]);
 
-    />
-  );
-  const renderItemTwo = ({item}) => (
+  const renderItemTwo = ({ item }) => (
     <CategoryComponentTwo
-         item={item}
-         propsdata={props.data?.data}
-         navigation={ props?.navigation}
-
-
-
+      item={item}
+      propsdata={props.data?.data}
+      navigation={props?.navigation}
     />
   );
+
+  const loadMoreArticles = () => {
+    setPage(page + 1);
+  };
 
   return (
-  
-    <SafeAreaView styles={commonstyles.container}>
-      {/* <SubHeader
-        title={props.title}
-        isMenu={false}
-        isBook={false}
-        isShare={true}
-        leftBtnClick={() => props?.navigation.goBack()}
-        ShareClick={() => {
-          sharecall(props.categoryName);
-        }}
-        BookClick={() => {
-          alert('BookMark   Clicked');
-        }}
-      /> */}
+    <SafeAreaView style={commonstyles.container}>
       <ScrollView style={commonstyles.scroll}>
         <View>
-          {props?.data?.length !== 0 ?
-          <View style={{ position: 'relative' }}>
-            {/* <FlatList
-              showsHorizontalScrollIndicator={false}
-              data={props.data?.data?.slice(0, 1)}
-              renderItem={renderItemOne}
-            /> */}
-            <FlatList
-              style={commonstyles.cateflist}
-              data={props.data?.data}
-              renderItem={renderItemTwo}
-            />
-          </View>
-          :
+          {articles.length !== 0 ? (
+            <View style={{ position: 'relative' }}>
+              <FlatList
+                style={commonstyles.cateflist}
+                data={articles}
+                renderItem={renderItemTwo}
+                keyExtractor={(item) => item.id.toString()}
+                onEndReached={loadMoreArticles}
+                onEndReachedThreshold={0.1}
+                ListFooterComponent={loading && <ActivityIndicator />}
+              />
+            </View>
+          ) : (
             <View style={commonstyles.spinnerView}>
               <ActivityIndicator color={appThemeColor} size='large' />
               <Text style={commonstyles.spinnerText}>. . . Loading . . .</Text>
             </View>
-          }
+          )}
         </View>
       </ScrollView>
-
-    
     </SafeAreaView>
   );
-};
+}
+
 export default CategoryUI;

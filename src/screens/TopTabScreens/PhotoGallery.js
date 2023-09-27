@@ -55,31 +55,25 @@ const PhotoGallery = ({
               renderItem={({item, index}) => (
                 <View style={{flex: 1}}>
                   <View style={{}}>
-                    <TouchableOpacity
-                      onPress={() => {
-                        navigation.navigate('PhotoArticle', {
-                          item: item,
-                        });
-                      }}>
-                      <View style={commonstyles.latestMainView}>
-                        <View style={commonstyles.latestsubView}>
-                          <View>
-                            <Image 
-                              style={commonstyles.latestimgTag}
-                              source={{uri: item?.web_featured_image}}
-                            />
-                          </View>
-                          <View>
-                            <Text
-                              numberOfLines={2}
-                              ellipsizeMode="tail"
-                              style={commonstyles.latestTxtTag}>
-                              {item?.title?.rendered}
-                            </Text>
-                          </View>
-                        </View>
-                      </View>
-                    </TouchableOpacity>
+                  <TouchableOpacity onPress={() => {
+                                        navigation.navigate('PhotoArticle', {
+                                            item: item,
+                                            detailsData: photosData?.data,
+                                        });
+                                    }}  >
+                                        <View style={commonstyles.latestMainView}>
+                                            <View >
+                                                <View>
+                                                    <Image style={commonstyles.latestimgTag} source={{ uri: item?.web_featured_image }} />
+                                                </View>
+                                                <View>
+                                                    <Text numberOfLines={2} ellipsizeMode="tail"
+                                                        style={commonstyles.latestTxtTag}>{item?.title?.rendered}
+                                                    </Text>
+                                                </View>
+                                            </View>
+                                        </View>
+                                    </TouchableOpacity>
                   </View>
                 </View>
               )}

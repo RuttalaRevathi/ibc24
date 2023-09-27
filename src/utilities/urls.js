@@ -2,13 +2,11 @@
 // staging
 // export const BaseUrl = 'https://veegam.ibc24.in/wp-json/ibc24/v1/';
 // Live
- export const BaseUrl = 'https://ibc24.in/wp-json/ibc24/v1/';
-
-
+ export const BaseUrl = 'https://www.ibc24.in/wp-json/api/v1/';
 export const ShareUrl = 'https://ibc24.in/';
-export const MenuUrl = 'menu-api';
+export const MenuUrl = 'menu/header';
 export const Slider = 'home-top-slider-api';
-export const CategoryUrl = 'category-api?cat_name=';
+export const CategoryUrl = 'category-posts/';
 export const LatestUrl = 'latest-news-api';
 export const WebstoriesUrl = 'webstories-api';
 export const RelatedUrl = 'article-related-api';
@@ -29,7 +27,10 @@ export const Business = 'business';
 export const Entertainment = 'entertainment';
 export const Khabarbebak = 'khabar-bebak';
 export const Photos = 'photo-gallery';
-
+export const Sarkariyojana = 'sarkari-yojana';
+export const Blog = 'blog';
+export const Religion = 'religion';
+export const Assemblyelection = 'assembly-election-2022';
 // cities
 export const Bhopal = 'bhopal';
 export const Indor = 'indore';
@@ -50,15 +51,12 @@ export const Punjab = 'punjab';
 
 
 export const Rasiphalalu = 'horoscope';
-export const National = 'national';
-export const International = 'international';
 export const Cinema = 'cinema';
 export const Education = 'nipuna-education';
 export const Special = 'nt-special';
 export const Lifestyle = 'lifestyle';
 export const Science = 'science-technology';
 export const CartoonURl = 'cartoon';
-export const Sarkariyojana = 'sarkari-yojana';//evergreen
 export const Crime = 'crime';
 export const Tourism = 'tourism';
 export const Sampadha = 'earnings';

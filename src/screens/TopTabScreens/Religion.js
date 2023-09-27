@@ -1,44 +1,44 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect } from 'react';
 import { useDispatch, connect } from 'react-redux';
-import getNationalAction from '../../redux/actions/getNationalAction';
+import getReligionAction from '../../redux/actions/getReligionAction';
 import CategoryUI from '../../components/CategoryUI';
 
 
-const NationalScreen = ({
+const ReligionScreen = ({
     navigation,
-    nationalData,
-    nationalLoading,
+    religionData,
+    religionLoading,
     route,
 }: Props) => {
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getNationalAction('national'));
+        dispatch(getReligionAction('religion'));
 
     }, []);
     // share function
 
     return (
         <CategoryUI
-        data = {nationalData}
+        data = {religionData}
         navigation = {navigation}
         title = {route.name}
-        categoryName ="national"
+        categoryName ="religion"
         />
     );
 };
 
 type Props = {
-    nationalData: Function,
-    nationalLoading: Boolean,
+    religionData: Function,
+    religionLoading: Boolean,
 };
 const mapStateToProps = state => ({
-    nationalData: state.nationalReducer?.nationalData,
-    nationalLoading: state.nationalReducer?.nationalLoading,
+    religionData: state.religionReducer?.religionData,
+    religionLoading: state.religionReducer?.religionLoading,
 });
 const mapDispatchToProps = {
-    getNationalAction,
+    getReligionAction,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(NationalScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(ReligionScreen);

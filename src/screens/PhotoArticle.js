@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import React, { useEffect } from 'react';
@@ -12,6 +13,9 @@ import HTMLView from 'react-native-htmlview';
 import moment from 'moment';
 import { connect, useDispatch } from 'react-redux';
 import getRelatedAction from '../redux/actions/getRelatedAction';
+import { WebView } from 'react-native-webview';
+
+
 const screenWidth = Dimensions.get('window').width;
 
 // let decode = require('html-entities-decoder');
@@ -22,8 +26,8 @@ const PhotoArticle = ({ navigation, relatedData, relatedLoading,
   latestNews,
   latestLoading, route }: Props) => {
   const dispatch = useDispatch();
-  const result1 = route?.params?.item?.content?.rendered.replace(/<a .*?>/g, "");
-        const result = result1.replace(/<a>/g, "");
+  const result1 = route?.params?.item?.content?.rendered;
+  var result = result1?.replace('lazyload', 'text/javascript');
   useEffect(() => {
     dispatch(getRelatedAction());
   }, []);
@@ -33,12 +37,12 @@ const PhotoArticle = ({ navigation, relatedData, relatedLoading,
   const sharecall = (name) => {
     const Link_Url = route?.params?.item?.link;
     Share.share({
-        message: Link_Url,
+      message: Link_Url,
     })
-        .then((result) => console.log(result))
-        .then((error) => console.log(error));
-};
- 
+      .then((result) => console.log(result))
+      .then((error) => console.log(error));
+  };
+
   // let source1 = route?.params?.item?.content?.rendered?.replace(
   //   'lazyload',
   //   'text/javascript',
@@ -51,14 +55,14 @@ const PhotoArticle = ({ navigation, relatedData, relatedLoading,
                     <View style={HeaderStyle.subHeadercustom}>
                         <View style={{ flex: 0.3 }}>
                             <TouchableOpacity onPress={() => {
-                                navigation.goBack()
-                            }} style={{ zIndex: 999, }}>
+                                navigation.goBack();
+                            }} style={{ zIndex: 999 }}>
                                 <Image source={require('../Assets/Images/arrow.png')} style={{ width: 18, height: 18, top: 10 }} />
                             </TouchableOpacity>
                         </View>
                         <View style={{ flex: 0.6, flexDirection: 'row', justifyContent: 'space-evenly', paddingTop: 5 }}>
                         <TouchableOpacity style={{ marginLeft: 'auto' }}
-                            onPress={() => { sharecall() }}>
+                            onPress={() => { sharecall(); }}>
                             <Image
                                 resizeMode="contain"
                                 source={require('../Assets/Images/share.png')}
@@ -69,22 +73,24 @@ const PhotoArticle = ({ navigation, relatedData, relatedLoading,
                         </View>
                     </View>
                 </View>
-                <ScrollView ref={(c,) => { this.scroll = c }}
-                    style={{ backgroundColor: blackcolor }}
+                <ScrollView ref={(c,) => { this.scroll = c; }}
+                    style={{ backgroundColor: 'pink' }}
                 >
                     <View>
 
 
                         <View style={{ margin: 10, flex: 1 }}>
                             <HTMLView
-                                value={"<p>" + route?.params?.item?.title?.rendered + "</p>"}
+                                value={'<p>' + route?.params?.item?.title?.rendered + '</p>'}
                                 stylesheet={headerStyles}
                             />
                         </View>
                         <View>
+                          {/* <Text>{route?.params?.item?.content?.rendered}</Text> */}
+                          {/* <WebView source={{ html: result }}  />; */}
                             <AutoHeightWebView
                                androidLayerType="software"
-                                style={{ width: Dimensions.get('window').width - 15 }}
+                                style={{ width: Dimensions.get('window').width - 10,maxHeight:'100%'}}
 
                                 customStyle={`
                                   * {
@@ -97,30 +103,18 @@ const PhotoArticle = ({ navigation, relatedData, relatedLoading,
                                     text-align:justify;
                                     
                                                                   }
-                                                                  div{
-                                                                    margin:10px 0px 0px 10px;
-                                                                  }
-                                                                  img{
-                                                                    width:100%;
-                                                                    height:inherit
-                                                                  }
-                                                                 
+                                                           
                                 `}
-
-                                source={{ html: result }}
+                                source={{ html: result += "<style>@import url('https://fonts.googleapis.com/css2?family=Mandali&display=swap');p strong, span, p span{font-family: 'Mandali', sans-serif;}p,li{font-family: 'Mandali', sans-serif;line-height:1.6;padding:0px 8px;color:#000;font-weight:500;font-size:18px;};h1{font-family:'Mandali';font-size:12px !important;}</style>" }}
                                 scalesPageToFit={false}
                                 viewportContent={'width=device-width, user-scalable=no'}
                             />
                         </View>
                     </View>
-                    <View>
+                    <View />
+                </ScrollView >
 
-                     
-
-                    </View>
-                </ScrollView>
-               
-            </View>
+            </View >
   );
 };
 const styles = StyleSheet.create({
@@ -132,12 +126,12 @@ const styles = StyleSheet.create({
   },
 });
 const headerStyles = StyleSheet.create({
-    p: { color: whitecolor, fontSize: 26, fontFamily: 'Mandali-Bold', lineHeight: 37, }
+  p: { color: whitecolor, fontSize: 26, fontFamily: 'Mandali-Bold', lineHeight: 37 },
 
-})
+});
 const RelatedTextStyles = StyleSheet.create({
-    p: { color: '#000', fontSize: 18, fontFamily: 'Mandali-Bold', lineHeight: 25, top: 10 }
-})
+  p: { color: '#000', fontSize: 18, fontFamily: 'Mandali-Bold', lineHeight: 25, top: 10 },
+});
 type Props = {
   relatedData: Function,
   relatedLoading: Boolean,

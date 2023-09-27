@@ -48,8 +48,7 @@ import getCartoonAction from '../redux/actions/getCartoonAction';
 import getHealthAction from '../redux/actions/getHealthAction';
 
 import getChhattisgarhAction from '../redux/actions/getChhattisgarhAction';
-import getNationalAction from '../redux/actions/getNationalAction';
-import getInterNationalAction from '../redux/actions/getInterNationalAction';
+import getBlogAction from '../redux/actions/getBlogAction';
 import getSportsAction from '../redux/actions/getSportsAction';
 import getBusinessAction from '../redux/actions/getBusinessAction';
 import getVideoAction from '../redux/actions/getVideoAction';
@@ -76,6 +75,8 @@ import getMadhyapradeshAction from '../redux/actions/getMadhyapradeshAction';
 import getUpAction from '../redux/actions/getUpAction';
 import getHpAction from '../redux/actions/getHpAction';
 import getPunjabAction from '../redux/actions/getPunjabAction';
+import getReligionAction from '../redux/actions/getReligionAction';
+import { getAssemblyelectionAction } from '../redux/actions/getAssemblyelectionAction';
 // import { getBilaspurAction } from '../redux/actions/getBilaspurAction';
 
 
@@ -99,10 +100,10 @@ const Home = ({
   stateLoaing,
   chhattisgarhData,
   chhattisgarhLoading,
-  nationalData,
-  nationalLoading,
-  interNationalData,
-  interNationalLoading,
+  blogData,
+  blogLoading,
+  religionData,
+  religionLoading,
   sportsData,
   sportsLoading,
   businessData,
@@ -159,10 +160,10 @@ const Home = ({
   );
   chhattisgarhData = useSelector(state => state.chhattisgarhReducer.chhattisgarhData);
   chhattisgarhLoading = useSelector(state => state.chhattisgarhReducer.chhattisgarhLoading);
-  nationalData = useSelector(state => state.nationalReducer.nationalData);
-  nationalLoading = useSelector(state => state.nationalReducer.nationalLoading);
-  interNationalData = useSelector(state => state.interNationalReducer.interNationalData,);
-  interNationalLoading = useSelector(state => state.interNationalReducer.interNationalLoading,);
+  blogData = useSelector(state => state.blogReducer.blogData);
+  blogLoading = useSelector(state => state.blogReducer.blogLoading);
+  religionData = useSelector(state => state.religionReducer.religionData,);
+  religionLoading = useSelector(state => state.religionReducer.religionLoading,);
   sportsData = useSelector(state => state.sportsReducer.sportsData);
   sportsLoading = useSelector(state => state.sportsReducer.sportsLoading);
   nriData = useSelector(state => state.nriReducer.nriData);
@@ -274,8 +275,8 @@ const Home = ({
       dispatch(getCountryAction());
       dispatch(getStateAction());
       dispatch(getChhattisgarhAction());
-      dispatch(getNationalAction());
-      dispatch(getInterNationalAction());
+      dispatch(getBlogAction());
+      dispatch(getReligionAction());
       dispatch(getSportsAction());
       dispatch(getBusinessAction());
       dispatch(getUpAction());
@@ -292,11 +293,11 @@ const Home = ({
       dispatch(getGwaliorAction());
       dispatch(getRaipurAction());
       dispatch(getBilaspurAction());
-      dispatch(getNationalAction());
       dispatch(getBiharAction());
       dispatch(getMaharashtraAction());
       dispatch(getHaryanaAction());
       dispatch(getPunjabAction());
+      dispatch(getAssemblyelectionAction());
       // setAutoPlayState(true);
       //      setActiveIndex(0);
 
@@ -334,10 +335,10 @@ type Props = {
   stateLoaing: Boolean,
   chhattisgarhData: Function,
   chhattisgarhLoading: Boolean,
-  nationalData: Function,
-  nationalLoading: Boolean,
-  interNationalData: Function,
-  interNationalLoading: Boolean,
+  blogData: Function,
+  blogLoading: Boolean,
+  religionData: Function,
+  religionLoading: Boolean,
   sportsData: Function,
   sportsLoading: Boolean,
   businessData: Function,

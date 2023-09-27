@@ -1,19 +1,19 @@
 /* eslint-disable prettier/prettier */
 
-import { BaseUrl, CategoryUrl, National} from '../../utilities/urls';
+import { BaseUrl, Blog, CategoryUrl} from '../../utilities/urls';
 
-export const GET_NATIONAL_SUCCESS = 'GET_NATIONAL_SUCCESS';
-export const GET_NATIONAL_ERROR = 'GET_NATIONAL_ERROR';
-export const GET_NATIONAL = 'GET_NATIONAL';
+export const GET_BLOG_SUCCESS = 'GET_BLOG_SUCCESS';
+export const GET_BLOG_ERROR = 'GET_BLOG_ERROR';
+export const GET_BLOG = 'GET_BLOG';
 
- const getNationalAction = () => {
+ const getBlogAction = () => {
 
     try {
       return async dispatch => {
         dispatch({
-          type: GET_NATIONAL,
+          type: GET_BLOG,
         });
-        const result = await fetch(BaseUrl + CategoryUrl + National, {
+        const result = await fetch(BaseUrl + CategoryUrl + Blog, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -22,13 +22,13 @@ export const GET_NATIONAL = 'GET_NATIONAL';
         const json = await result.json();
         if (json) {
           dispatch({
-            type: GET_NATIONAL_SUCCESS,
+            type: GET_BLOG_SUCCESS,
             payload: json,
           });
         }
   else {
           dispatch({
-            type: GET_NATIONAL_ERROR,
+            type: GET_BLOG_ERROR,
           });
           console.log('Unable to fetch!');
         }
@@ -37,4 +37,4 @@ export const GET_NATIONAL = 'GET_NATIONAL';
       console.log(error);
     }
   };
-export default getNationalAction;
+export default getBlogAction;
