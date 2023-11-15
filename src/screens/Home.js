@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, connect, useSelector } from 'react-redux';
@@ -8,6 +9,8 @@ import Swiper from 'react-native-web-swiper';
 import InstaStory from 'react-native-insta-story';
 
 import { SwiperFlatList } from 'react-native-swiper-flatlist';
+import getWebstoriesAction from '../redux/actions/getWebstoriesAction';
+
 import {
   View,
   Text,
@@ -19,6 +22,7 @@ import {
   ImageBackground,
   SafeAreaView,
   RefreshControl,
+  Animated,
 } from 'react-native';
 import getSliderAction from '../redux/actions/getSliderAction';
 
@@ -27,6 +31,8 @@ import {
   blackcolor,
   commonstyles,
   ITEM_WIDTH,
+  medium_gray,
+  red_color,
   SLIDER_WIDTH,
   whitecolor,
 } from '../styles/commonstyles';
@@ -53,8 +59,8 @@ import getSportsAction from '../redux/actions/getSportsAction';
 import getBusinessAction from '../redux/actions/getBusinessAction';
 import getVideoAction from '../redux/actions/getVideoAction';
 import getPhotoGalleryAction from '../redux/actions/getPhotoGalleryAction';
-import { getBiharAction} from '../redux/actions/getBiharAction';
-import { getMaharashtraAction} from '../redux/actions/getMaharashtraAction';
+import { getBiharAction } from '../redux/actions/getBiharAction';
+import { getMaharashtraAction } from '../redux/actions/getMaharashtraAction';
 import { getHaryanaAction } from '../redux/actions/getHaryanaAction';
 import HomeRasiphalaluItemOne from '../components/HomeRasiphalaluItemOne';
 import HomeRasiphalaluItemTwo from '../components/HomeRasiphalaluItemTwo';
@@ -77,7 +83,7 @@ import getHpAction from '../redux/actions/getHpAction';
 import getPunjabAction from '../redux/actions/getPunjabAction';
 import getReligionAction from '../redux/actions/getReligionAction';
 import { getAssemblyelectionAction } from '../redux/actions/getAssemblyelectionAction';
-// import { getBilaspurAction } from '../redux/actions/getBilaspurAction';
+import HomeStoriesItem from '../components/HomeStoriesItem';
 
 
 const Home = ({
@@ -108,8 +114,8 @@ const Home = ({
   sportsLoading,
   businessData,
   businessLoading,
-  nriData,
-  nriLoading,
+  upData,
+  upLoading,
   worldData,
   worldLoading,
   khabarbebakData,
@@ -118,6 +124,8 @@ const Home = ({
   madhyapradeshLoading,
   cityData,
   cityLoading,
+  webstoriesData,
+  webstoriesLoading,
   entertainmentData,
   entertainmentLoading,
   hpData,
@@ -134,6 +142,8 @@ const Home = ({
   // const [index, setIndex] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const [autoPlayState, setAutoPlayState] = useState(true);
+  cityData = useSelector(state => state.cityReducer.cityData,);
+  cityLoading = useSelector(state => state.cityReducer.cityLoading,);
   sliderData = useSelector(state => state.sliderReducer.sliderData);
   loading = useSelector(state => state.sliderReducer.loading);
   latestNews = useSelector(state => state.latestNewsReducer.latestNews);
@@ -166,16 +176,15 @@ const Home = ({
   religionLoading = useSelector(state => state.religionReducer.religionLoading,);
   sportsData = useSelector(state => state.sportsReducer.sportsData);
   sportsLoading = useSelector(state => state.sportsReducer.sportsLoading);
-  nriData = useSelector(state => state.nriReducer.nriData);
-  nriLoading = useSelector(state => state.nriReducer.nriLoading);
+  upData = useSelector(state => state.upReducer.upData);
+  upLoading = useSelector(state => state.upReducer.upLoading);
   worldData = useSelector(state => state.worldReducer.worldData);
   worldLoading = useSelector(state => state.worldReducer.worldLoading);
   khabarbebakData = useSelector(state => state.khabarBebakReducer.khabarbebakData);
   khabarbebakLoading = useSelector(state => state.khabarBebakReducer.khabarbebakLoading);
   madhyapradeshData = useSelector(state => state.madhyapradeshReducer.madhyapradeshData);
   madhyapradeshLoading = useSelector(state => state.madhyapradeshReducer.madhyapradeshLoading,);
-  cityData = useSelector(state => state.cityReducer.cityData,);
-  cityLoading = useSelector(state => state.cityReducer.cityLoading,);
+
   entertainmentData = useSelector(state => state.entertainmentReducer.entertainmentData);
   entertainmentLoading = useSelector(state => state.entertainmentReducer.entertainmentLoading);
   hpData = useSelector(state => state.hpReducer.hpData);
@@ -188,58 +197,30 @@ const Home = ({
   photosLoading = useSelector(state => state.photosGalleryReducer.photosLoading,);
   punjabData = useSelector(state => state.punjabReducer.punjabData);
   punjabLoading = useSelector(state => state.punjabReducer.punjabLoading,);
+  webstoriesData = useSelector(state => state.webstoriesReducer.webstoriesData);
+  webstoriesLoading = useSelector(state => state.webstoriesReducer.webstoriesLoading,);
   const dispatch = useDispatch();
-  const [totalLoading, setTotalLoading] = useState(false);
-  let decode = require('html-entities-decoder');
+  const flatListRef = useRef(null);
 
+  useEffect(() => {
+    const scrollInterval = setInterval(() => {
+      if (flatListRef.current) {
+        flatListRef.current.scrollToEnd({ animated: true });
+      }
+    }, 3000); // Adjust the interval time as needed
 
+    return () => clearInterval(scrollInterval);
+  }, []);
 
-  const carouselItem = ({ item, index }) => (
-    <HomeCarouselItem
+  const storiesItem = ({ item, index }) => (
+    <HomeStoriesItem
       item={item}
-      propsdata={sliderData?.data}
-      navigation={navigation}
-      index={activeIndex}
-
-    />
-  );
-  const rasiPhalaluItemOne = ({ item, index }) => (
-    <HomeRasiphalaluItemOne
-      item={item}
-      propsdata={rasiPhalaluData?.data}
-      navigation={navigation}
-      index={index}
-
-    />
-  );
-  const rasiPhalaluItemTwo = ({ item, index }) => (
-    <HomeRasiphalaluItemTwo
-      item={item}
-      propsdata={rasiPhalaluData?.data}
-      navigation={navigation}
-      index={index}
-
-    />
-  );
-
-
-  const cartoonItem = ({ item, index }) => (
-    <HomeCartoonItem
-      item={item}
-      propsdata={cartoonData?.data}
-      navigation={navigation}
-      index={index}
-
-    />
-  );
-  const photoGalleryItemOne = ({ item, index }) => (
-    <HomePhotogalleryItemOne
-      item={item}
-      propsdata={photosData?.data}
+      propsdata={webstoriesData?.data}
       navigation={navigation}
       index={index}
     />
   );
+
   const photoGalleryItemTwo = ({ item, index }) => (
     <HomePhotogalleryItemTwo
       item={item}
@@ -260,8 +241,7 @@ const Home = ({
   const [refreshing, setRefreshing] = React.useState(false);
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    // setAutoPlayState(false);
-    // setActiveIndex(0);
+
 
     setTimeout(() => {
       setRefreshing(false);
@@ -298,20 +278,277 @@ const Home = ({
       dispatch(getHaryanaAction());
       dispatch(getPunjabAction());
       dispatch(getAssemblyelectionAction());
-      // setAutoPlayState(true);
-      //      setActiveIndex(0);
+      dispatch(getWebstoriesAction());
+
+
 
     }, 3000);
   }, []);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-     
+
+      {/* Breaking News */}
+      <View style={{ backgroundColor: red_color, height: 70 }}>
+        <View style={{ flexDirection: 'row', height: 40, alignItems: 'center' }}>
+          <View>
+            <Text style={{ color: whitecolor }}>Breaking News</Text>
+
+          </View>
+          <View style={{ marginLeft: 'auto', marginRight: 10 }}>
+            <TouchableOpacity onPress={() => {
+
+            }}>
+
+              <Image style={{ width: 25, height: 25, color: whitecolor }}
+                source={require('../Assets/Images/cancel.png')} />
+
+            </TouchableOpacity>
+          </View>
+
+        </View>
+
+
+        <FlatList
+      data={latestNews?.data}
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      renderItem={({ item }) => (
+        <View style={{ paddingHorizontal: 10 }}>
+          <Text style={{ color: 'white' }} numberOfLines={1}>
+            {item?.title?.rendered}
+          </Text>
+        </View>
+      )}
+      keyExtractor={(item, index) => index.toString()}
+      ref={flatListRef}
+    />
+
+      </View>
       <ScrollView style={commonstyles.scroll} refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }>
-        <Text>Home</Text>
-    </ScrollView >
+        <View style={{ padding: 10 }}>
+          {/* Spinner */}
+          <Spinner
+            //visibility of Overlay Loading Spinner
+            visible={loading && latestLoading && cinemaLoading}
+            //Text with the Spinner
+            textContent={'Loading...'}
+            //Text style of the Spinner Text
+            textStyle={{ color: '#FFF' }}
+          />
+
+
+          {/* Cinema */}
+          <HomeUI
+            categoryName="शहर"
+            data={cityData?.data}
+            navigationScreen="शहर"
+            navigation={navigation}
+          />
+          {/* webstories */}
+          <View>
+            <View style={{
+              flexDirection: 'row', left: 5, marginTop: 20, marginBottom: 20,
+              borderBottomWidth: 1,
+              borderBottomColor: medium_gray
+            }}>
+              <View style={{ bottom: 10 }}>
+                <Text style={{ color: blackcolor, fontSize: 23, fontWeight: '900' }}>फोटो गैलरी</Text>
+              </View>
+              <TouchableOpacity style={{
+                marginRight: 20, borderColor: red_color, marginLeft: 'auto',
+                borderWidth: 1.5, borderRadius: 5, width: 60, justifyContent: 'center',
+                alignSelf: 'center', alignContent: 'center', height: 25, bottom: 10,
+              }}
+                onPress={() => navigation.navigate('फोटो गैलरी')}>
+                <View style={{
+                }}>
+                  <Text style={{ textAlign: 'center', color: red_color, fontWeight: '800' }}>सभी देख</Text>
+                </View>
+              </TouchableOpacity>
+
+
+
+            </View>
+            <View style={{ top: 30, bottom: 20, }}>
+              <FlatList
+                persistentScrollbar
+                data={photosData?.data?.slice(0, 8)}
+                showsHorizontalScrollIndicator={true}
+                horizontal={true}
+                renderItem={photoGalleryItemTwo}
+              />
+            </View>
+            <View style={{ borderBottomColor: medium_gray, borderBottomWidth: 2 }}></View>
+          </View>
+          {/* state */}
+          <HomeUI
+            categoryName="प्रदेश"
+            data={stateData?.data}
+            navigationScreen="प्रदेश"
+            navigation={navigation}
+          />
+
+          {/* country */}
+          <HomeUI
+            categoryName="देश"
+            data={countryData?.data}
+            navigationScreen="देश"
+            navigation={navigation}
+          />
+
+          {/* ap */}
+          {/* <HomeUI
+            categoryName="छत्तीसगढ़"
+            data={chhattisgarhData?.data}
+            navigationScreen="छत्तीसगढ़"
+            navigation={navigation}
+          /> */}
+          {/* national */}
+          <HomeUI
+            categoryName="ब्लॉग"
+            data={blogData?.data}
+            navigationScreen="ब्लॉग"
+            navigation={navigation}
+          />
+          {/* International */}
+          <HomeUI
+            categoryName="धर्म"
+            data={religionData?.data}
+            navigationScreen="धर्म"
+            navigation={navigation}
+          />
+          {/* sports */}
+          <HomeUI
+            categoryName="खेल"
+            data={sportsData?.data}
+            navigationScreen="खेल"
+            navigation={navigation}
+          />
+          {/* Business */}
+          <HomeUI
+            categoryName="बिज़नेस"
+            data={businessData?.data}
+            navigationScreen="बिज़नेस"
+            navigation={navigation}
+          />
+          {/* Nri */}
+          {/* <HomeUI
+            categoryName="ఎన్‌ఆర్‌ఐ"
+            data={upData?.data}
+            navigationScreen="ఎన్‌ఆర్‌ఐ"
+            navigation={navigation}
+          /> */}
+          {/* Photo Gallery */}
+          {/* <View>
+            photo gallery  text
+
+            <View style={commonstyles.photoview}>
+              <View style={commonstyles.phototextview}>
+                <View style={{ flex: 1.7 }}>
+                  <Text style={commonstyles.ptext}>फोटो गैलरी</Text>
+                </View>
+              </View>
+              photo gallery  Cards
+              <View>
+               
+                <View>
+                  <FlatList persistentScrollbar
+                    data={photosData?.data?.slice(0, 8)}
+                    showsHorizontalScrollIndicator={true}
+                    horizontal={true}
+                    renderItem={photoGalleryItemTwo}
+                  />
+                </View>
+
+              </View>
+            </View>
+            more text
+            <View style={commonstyles.moreview}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('फोटो गैलरी');
+                }}>
+                <Text style={commonstyles.moretext}>More . . .</Text>
+              </TouchableOpacity>
+            </View>
+          </View> */}
+
+          {/* videos Gallery */}
+          <View>
+            {/*videos  text*/}
+
+            <View style={commonstyles.photoview}>
+              <View style={commonstyles.phototextview}>
+                <View style={{ flex: 1.7 }}>
+                  <Text style={commonstyles.ptext}>वीडियो</Text>
+                </View>
+              </View>
+              {/* videos  Cards*/}
+              <View>
+                <View>
+                  <FlatList
+                    data={videosData?.data}
+                    showsHorizontalScrollIndicator={false}
+                    horizontal={true}
+                    renderItem={videoGalleryitem}
+                  />
+
+                </View>
+
+              </View>
+            </View>
+            {/* more text */}
+            <View style={commonstyles.moreview}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('वीडियो');
+                }}>
+                <Text style={commonstyles.moretext}>More . . .</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          {/* world */}
+          <HomeUI
+            categoryName="दुनिया"
+            data={worldData?.data}
+            navigationScreen="दुनिया"
+            navigation={navigation}
+          />
+
+          {/* khabarbebak */}
+          {/* <HomeUI
+            categoryName="జిందగీ"
+            data={khabarbebakData?.data}
+            navigationScreen="జిందగీ"
+            navigation={navigation}
+          /> */}
+          {/* Bathukamma */}
+          {/* <HomeUI
+            categoryName="బతుకమ్మ"
+            data={madhyapradeshData?.data}
+            navigationScreen="బతుకమ్మ"
+            navigation={navigation}
+          /> */}
+
+          {/* entertainment */}
+          <HomeUI
+            categoryName="एंटरटेनमेंट"
+            data={entertainmentData?.data}
+            navigationScreen="एंटरटेनमेंट"
+            navigation={navigation}
+          />
+          {/* Vaasthu */}
+          {/* <HomeUI
+        categoryName="వాస్తు"
+        data={himacha?.data}
+        navigationScreen="వాస్తు"
+        navigation={navigation}
+      /> */}
+        </View>
+      </ScrollView >
     </SafeAreaView >
   );
 };
@@ -343,8 +580,8 @@ type Props = {
   sportsLoading: Boolean,
   businessData: Function,
   businessLoading: Boolean,
-  nriData: Function,
-  nriLoading: Boolean,
+  upData: Function,
+  upLoading: Boolean,
   worldData: Function,
   worldLoading: Boolean,
   khabarbebakData: Function,

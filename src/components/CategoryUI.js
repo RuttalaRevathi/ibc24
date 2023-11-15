@@ -49,7 +49,7 @@ function CategoryUI(props, { navigation }) {
       <ScrollView style={commonstyles.scroll}>
         <View>
           {articles.length !== 0 ? (
-            <View style={{ position: 'relative' }}>
+            <View style={{ position: 'relative',marginStart:10 }}>
               <FlatList
                 style={commonstyles.cateflist}
                 data={articles}

@@ -12,7 +12,7 @@ export default function SubHeader(props, {navigation}) {
           onPress={() => {
             props.leftBtnClick();
           }}
-          style={{zIndex: 999, flex: 0.8}}>
+          style={{zIndex: 999, flex: 1}}>
           <MaterialIcons
             name="arrow-back"
             size={30}

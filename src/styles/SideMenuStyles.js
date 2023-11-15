@@ -3,7 +3,7 @@ import {StyleSheet, Platform} from 'react-native';
 import {Dark_Gray, appThemeColor, blackcolor, graycolor, whitecolor} from '../styles/commonstyles';
 
 export const sideMenuStyle = StyleSheet.create({
-  icon: {width: 15, height: 15},
+  icon: {width: 15, height: 15,color:blackcolor},
 
   text: {
        color: Dark_Gray,

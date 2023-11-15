@@ -39,7 +39,7 @@ import newsReducer from '../redux/reducers/newsReducer';
 import menuReducer from '../redux/reducers/menuReducer';
 import sarkariyojanaReducer from '../redux/reducers/sarkariyojanaReducer';
 import assemblyelectionReducer from '../redux/reducers/assemblyelectionReducer';
-
+import webstoriesReducer from '../redux/reducers/webstoriesReducer';
 
 const rootReducer = combineReducers({sliderReducer,latestNewsReducer,countryReducer,
 cinemaReducer,rasiPhalauReducer,cartoonReducer,healthReducer,stateReducer,chhattisgarhReducer,
@@ -48,5 +48,6 @@ photosGalleryReducer,worldReducer,khabarBebakReducer,madhyapradeshReducer,cityRe
 entertainmentReducer,hpReducer,videoReducer,bhopalReducer,indorReducer,jabalpurReducer,
 gwaliorReducer,raipurReducer,bilaspurReducer,biharReducer,maharashtraReducer,haryanaReducer,
 articleDetailReducer,punjabReducer,newsReducer,menuReducer,sarkariyojanaReducer,assemblyelectionReducer,
+webstoriesReducer,
 });
 export const store = createStore(rootReducer, applyMiddleware(thunk));

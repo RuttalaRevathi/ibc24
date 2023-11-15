@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Image, FlatList, Alert, SafeAreaView, TouchableHighlight, Linking } from 'react-native';
+import { View, Text, TouchableOpacity, Image, FlatList, Alert, SafeAreaView, TouchableHighlight, Linking, StyleSheet, Button } from 'react-native';
 import { DrawerItem } from '@react-navigation/drawer';
 import { StackActions } from '@react-navigation/native';
 import { appThemeColor, blackcolor, graycolor, whitecolor } from '../styles/commonstyles';
@@ -10,13 +10,14 @@ import { ScrollView } from 'react-native-gesture-handler';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Modal from 'react-native-modal';
 import FastImage from 'react-native-fast-image';
+import { HeaderStyle } from '../styles/Header.Styles';
 
 export default class SideMenu extends Component {
     constructor(props) {
         super(props);
         this.state = {
             DrawerItem: false,
-            StateItem:false,
+            StateItem: false,
         };
     }
     CityNestedDrawerItem = () => {
@@ -37,34 +38,31 @@ export default class SideMenu extends Component {
     }
 
     render() {
+        const { isNightMode, toggleNightMode } = this.context;
         return (
             <SafeAreaView style={{ flex: 1 }}>
 
-                <View style={{ flex: 1, paddingTop: 20, backgroundColor: whitecolor }}>
+                <View style={{ flex: 1 }}>
+
+                    <View style={{ backgroundColor: whitecolor, alignSelf: 'flex-end', padding: 10 }}>
+                        {/* <View style={[styles.container, isNightMode && styles.nightMode]}>
+                            <Text style={styles.text}>Hello, React Native!</Text>
+                            <Button title="Toggle Night Mode" onPress={toggleNightMode} />
+                        </View> */}
+                        <View style={{ width: '90%' }}>
+                            <TouchableOpacity onPress={() => {
+                                this.props.navigation.closeDrawer();
+                            }}>
+
+                                <Image style={{ width: 25, height: 25 }}
+                                    source={require('../Assets/Images/cancel.png')} />
+
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
 
                     <ScrollView style={{}}>
-
-                        {/* <View style={{ flexDirection: 'row',left: 5 }}>
-                                <View>
-                                    <Image style={{}} source={require('../Assets/Images/user.png')} />
-                                </View>
-                                <View>
-                                    <View style={{ flexDirection: 'column' }}>
-                                        <Text>
-                                            मेरा प्रोफाइल
-                                        </Text>
-                                        <Text>ibc24 से जुड़ें</Text>
-                                    </View>
-                                    </View>
-                                    <View style={{
-                                        height: 50, width: 80, backgroundColor: 'orange',
-                                        justifyContent: 'center', borderRadius: 10, alignItems: 'center'
-                                    }}>
-                                        <Text style={{fontWeight:'600'}}>लॉग इन</Text>
-                                    </View>
-                               
-                            </View>
-                         */}
                         <DrawerItem
                             style={sideMenuStyle.item}
                             icon={({ color, size }) => (
@@ -79,7 +77,8 @@ export default class SideMenu extends Component {
                                 this.props.navigation.navigate('Home');
                             }}
                         />
-{/* Cities */}
+
+                        {/* Cities */}
                         <DrawerItem
                             style={sideMenuStyle.item}
                             icon={({ color, size }) => (
@@ -105,7 +104,7 @@ export default class SideMenu extends Component {
                                             name={this.state.shouldShow ? "upcircleo" : "downcircleo"}
                                             size={15}
                                             color={blackcolor}
-                                            // style={{ top: 4}}
+                                        // style={{ top: 4}}
                                         />
                                     </TouchableOpacity>
                                 </View>
@@ -177,8 +176,8 @@ export default class SideMenu extends Component {
                                 }}
                             />
                         )}
-{/* Stetes */}
-<DrawerItem
+                        {/* Stetes */}
+                        <DrawerItem
                             style={sideMenuStyle.item}
                             icon={({ color, size }) => (
                                 <Image
@@ -203,7 +202,7 @@ export default class SideMenu extends Component {
                                             name={this.state.shouldShow ? "upcircleo" : "downcircleo"}
                                             size={15}
                                             color={blackcolor}
-                                            // style={{ top: 12 }}
+                                        // style={{ top: 12 }}
                                         />
                                     </TouchableOpacity>
                                 </View>
@@ -297,36 +296,207 @@ export default class SideMenu extends Component {
                                 }}
                             />
                         )}
- {/*contact screens  */}
+                        {/* youtube channels */}
+                        <DrawerItem
+                            style={sideMenuStyle.item}
+                            icon={({ color, size }) => (
+                                <Image
+                                    source={require('../Assets/Images/sidemenuIcons/national.png')}
+                                    style={sideMenuStyle.icon}
+                                />
+                            )}
+                            label="देश"
+                            labelStyle={sideMenuStyle.text}
+                            onPress={() => {
+                                this.props.navigation.navigate('देश');
+                            }}
+                        />
+                        <DrawerItem
+                            style={sideMenuStyle.item}
+                            icon={({ color, size }) => (
+                                <Image
+                                    source={require('../Assets/Images/sidemenuIcons/international.png')}
+                                    style={sideMenuStyle.icon}
+                                />
+                            )}
+                            label="दुनिया"
+                            labelStyle={sideMenuStyle.text}
+                            onPress={() => {
+                                this.props.navigation.navigate('दुनिया');
+                            }}
+                        />
+                        <DrawerItem
+                            style={sideMenuStyle.item}
+                            icon={({ color, size }) => (
+                                <Image
+                                    source={require('../Assets/Images/sidemenuIcons/sports.png')}
+                                    style={sideMenuStyle.icon}
+                                />
+                            )}
+                            label="खेल"
+                            labelStyle={sideMenuStyle.text}
+                            onPress={() => {
+                                this.props.navigation.navigate('खेल');
+                            }}
+                        />
+                        <DrawerItem
+                            style={sideMenuStyle.item}
+                            icon={({ color, size }) => (
+                                <Image
+                                    source={require('../Assets/Images/sidemenuIcons/video.png')}
+                                    style={sideMenuStyle.icon}
+                                />
+                            )}
+                            label="वीडियो"
+                            labelStyle={sideMenuStyle.text}
+                            onPress={() => {
+                                this.props.navigation.navigate('वीडियो');
+                            }}
+                        />
+                        <DrawerItem
+                            style={sideMenuStyle.item}
+                            icon={({ color, size }) => (
+                                <Image
+                                    source={require('../Assets/Images/sidemenuIcons/photos.png')}
+                                    style={sideMenuStyle.icon}
+                                />
+                            )}
+                            label="फोटो गैलरी"
+                            labelStyle={sideMenuStyle.text}
+                            onPress={() => {
+                                this.props.navigation.navigate('फोटो गैलरी');
+                            }}
+                        />
+                        <DrawerItem
+                            style={sideMenuStyle.item}
+                            icon={({ color, size }) => (
+                                <Image
+                                    source={require('../Assets/Images/sidemenuIcons/business.png')}
+                                    style={sideMenuStyle.icon}
+                                />
+                            )}
+                            label="बिज़नेस"
+                            labelStyle={sideMenuStyle.text}
+                            onPress={() => {
+                                this.props.navigation.navigate('बिज़नेस');
+                            }}
+                        />
+                        <DrawerItem
+                            style={sideMenuStyle.item}
+                            icon={({ color, size }) => (
+                                <Image
+                                    source={require('../Assets/Images/sidemenuIcons/entertainment.png')}
+                                    style={sideMenuStyle.icon}
+                                />
+                            )}
+                            label="एंटरटेनमेंट"
+                            labelStyle={sideMenuStyle.text}
+                            onPress={() => {
+                                this.props.navigation.navigate('एंटरटेनमेंट');
+                            }}
+                        />
+                        <DrawerItem
+                            style={sideMenuStyle.item}
+                            icon={({ color, size }) => (
+                                <Image
+                                    source={require('../Assets/Images/sidemenuIcons/health.png')}
+                                    style={sideMenuStyle.icon}
+                                />
+                            )}
+                            label="Khabar Bebak"
+                            labelStyle={sideMenuStyle.text}
+                            onPress={() => {
+                                this.props.navigation.navigate('Khabar Bebak');
+                            }}
+                        />
+                        <DrawerItem
+                            style={sideMenuStyle.item}
+                            icon={({ color, size }) => (
+                                <Image
+                                    source={require('../Assets/Images/home.png')}
+                                    style={sideMenuStyle.icon}
+                                />
+                            )}
+                            label="सरकारी योजना"
+                            labelStyle={sideMenuStyle.text}
+                            onPress={() => {
+                                this.props.navigation.navigate('सरकारी योजना');
+                            }}
+                        />
+                        <DrawerItem
+                            style={sideMenuStyle.item}
+                            icon={({ color, size }) => (
+                                <Image
+                                    source={require('../Assets/Images/sidemenuIcons/editpage.png')}
+                                    style={sideMenuStyle.icon}
+                                />
+                            )}
+                            label="ब्लॉग"
+                            labelStyle={sideMenuStyle.text}
+                            onPress={() => {
+                                this.props.navigation.navigate('ब्लॉग');
+                            }}
+                        />
+                        <DrawerItem
+                            style={sideMenuStyle.item}
+                            icon={({ color, size }) => (
+                                <Image
+                                    source={require('../Assets/Images/sidemenuIcons/religion.png')}
+                                    style={sideMenuStyle.icon}
+                                />
+                            )}
+                            label="धर्म"
+                            labelStyle={sideMenuStyle.text}
+                            onPress={() => {
+                                this.props.navigation.navigate('धर्म');
+                            }}
+                        />
+
+                        {/*contact screens  */}
+                        <DrawerItem
+                            // style={sideMenuStyle.item}
+
+                            label="Complaints"
+                            labelStyle={sideMenuStyle.text}
+                            onPress={() => {
+                                this.props.navigation.navigate('Complaints');
+                            }}
+                        />
+                        <DrawerItem
+                            // style={sideMenuStyle.item}
+
+                            label="Contact Us"
+                            labelStyle={sideMenuStyle.text}
+                            onPress={() => {
+                                this.props.navigation.navigate('Contact');
+                            }}
+                        />
                         <DrawerItem
                             // style={sideMenuStyle.item}
 
                             label="Terms and Conditions"
                             labelStyle={sideMenuStyle.text}
-                        // onPress={() => {
-                        //     this.props.navigation.navigate('About');
-                        // }}
+                            onPress={() => {
+                                this.props.navigation.navigate('Terms');
+                            }}
                         />
                         <DrawerItem
                             // style={sideMenuStyle.item}
 
-                            label="News Publisher Details"
+                            label="Privacy Policy"
                             labelStyle={sideMenuStyle.text}
-                        // onPress={() => {
-                        //     this.props.navigation.navigate('Privacy');
-                        // }}
+                            onPress={() => {
+                                this.props.navigation.navigate('Privacy');
+                            }}
                         />
 
                         <DrawerItem
-                            // style={[sideMenuStyle.item]}
-
-
-                            label="App Version"
-
-                            labelStyle={[sideMenuStyle.text]}
-                        // onPress={() => {
-                        //     this.props.navigation.navigate('Terms');
-                        // }}
+                            label="App Version - V1.0"
+                            labelStyle={{
+                                color: 'black',
+                                fontFamily: 'Mandali-Regular',
+                                fontSize: 16
+                            }}
                         />
 
 
@@ -345,3 +515,18 @@ export default class SideMenu extends Component {
 
 
 }
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'white', // Default background color for day mode
+    },
+    nightMode: {
+      backgroundColor: 'black', // Background color for night mode
+    },
+    text: {
+      fontSize: 20,
+      color: 'black', // Text color for day mode
+    },
+  });

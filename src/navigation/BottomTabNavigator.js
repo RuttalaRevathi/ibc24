@@ -94,10 +94,10 @@ const BottomTabNavigator = () => {
 
       <Tab.Screen
         name="Epaper"
-        component={SearchScreen}
+        component={PhotoGallery}
         options={{
           headerShown: false,
-          tabBarLabel: 'Search',
+          tabBarLabel: 'Gallery',
 
           tabBarLabelStyle: {
             fontFamily: 'DIN-Condensed-Bold',
@@ -122,7 +122,7 @@ const BottomTabNavigator = () => {
                 tintColor: focused ? blackcolor : Dark_Gray,
                 top: 5,
               }}
-              source={require('../Assets/Images/search.png')}
+              source={require('../Assets/Images/gallery.png')}
             />
           ),
         }}

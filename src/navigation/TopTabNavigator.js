@@ -21,7 +21,8 @@ import SarkariyojanaScreen from '../screens/TopTabScreens/Sarkariyojana';
 import Blog from '../screens/TopTabScreens/Blog';
 import Religion from '../screens/TopTabScreens/Religion';
 import { sideMenuStyle } from '../styles/SideMenuStyles';
-import Assemblyelection from '../screens/TopTabScreens/Assemblyelection';
+import AssemblyelectionScreen from '../screens/TopTabScreens/Assemblyelection';
+import Webstories from '../screens/TopTabScreens/Webstories';
 
 
 const TopTab = createMaterialTopTabNavigator();
@@ -50,25 +51,26 @@ function TopTabNavigator({ navigation }) {
           showLabel: true,
         },
       })}>
-      <TopTab.Screen name="फोटो गैलरी" component={PhotoGallery} />
-
+      {/* <TopTab.Screen name="Webstories" component={Webstories} /> */}
+      <TopTab.Screen name="Home" component={Home} />
       <TopTab.Screen name="शहर" component={City} />
-      <TopTab.Screen name="विधानसभा चुनाव 2023" component={Assemblyelection} />
+      {/* <TopTab.Screen name="विधानसभा चुनाव 2023" component={AssemblyelectionScreen} /> */}
       <TopTab.Screen name="प्रदेश" component={State} />
       <TopTab.Screen name="देश" component={Country} />
       <TopTab.Screen name="दुनिया" component={World} />
       <TopTab.Screen name="खेल" component={Sports} />
       <TopTab.Screen name="वीडियो" component={Videos} />
-
+      <TopTab.Screen name="फोटो गैलरी" component={PhotoGallery} />
       <TopTab.Screen name="बिज़नेस" component={Business} />
       <TopTab.Screen name="एंटरटेनमेंट" component={Entertainment} />
       <TopTab.Screen name="Khabar Bebak" component={KhabarBebak} />
       <TopTab.Screen name="सरकारी योजना" component={SarkariyojanaScreen} />
       <TopTab.Screen name="ब्लॉग" component={Blog} />
       <TopTab.Screen name="धर्म" component={Religion} />
-
+    
 
     </TopTab.Navigator>
+      // खबर बेबाक
   );
 };
 

@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
-import { Text, View, SafeAreaView, Linking } from 'react-native';
+import { Text, View, SafeAreaView, Linking, Image, ScrollView } from 'react-native';
 import SubHeader from '../../components/SubHeader';
-import { commonstyles } from '../../styles/commonstyles';
+import { blackcolor, commonstyles, gallerycolor, whitecolor } from '../../styles/commonstyles';
 import { ContactStyles } from '../../styles/contactScreenStyles';
 
 
@@ -20,36 +20,143 @@ export default class ContactUs extends Component {
 
         return (
             <SafeAreaView styles={commonstyles.container}>
-                
+
                 <SubHeader title={'Contact Us '} isMenu={false} isBook={false} isShare={false}
                     leftBtnClick={() => this.props.navigation.goBack()}
-                    ShareClick={() => { this.sharecall(); }}
-                    BookClick={() => { alert('BookMark   Clicked'); }}
-                />
-                <View style={ContactStyles.mainView}>
-                    <View style={{ left: 20, top: 10 }}>
 
-                        <Text style={ContactStyles.text1}>CORPORATE OFFICE</Text>
-                        <Text style={ContactStyles.text2}>TELANGANA PUBLICATIONS PVT. LTD,</Text>
-                        <Text style={ContactStyles.text1}># 8-2-603/1/7,8&9, Krishnapuram,</Text>
-                        <Text style={ContactStyles.text1}>Road No. 10, Banjara Hills,</Text>
-                        <Text style={ContactStyles.text1}>HYDERABAD 500 034.</Text>
-                        <Text style={ContactStyles.text1}>Telangana State {'\n'}
-                        Ph: <Text style={{ color: 'blue' }}
-                                    onPress={() => Linking.openURL('tel:+91 40 2329 1999')}>
-                                    +91 40 2329 1999
-                                </Text>,{'\n'}
-                                Fax: <Text style={{ color: 'blue' }}
-                                    onPress={() => Linking.openURL('tel:+91 40 2329 1117')}>
-                                    +91 40 2329 1117
-                                </Text>{'\n'}
-                                Email: <Text style={{ color: 'blue' }}
-                                    onPress={() => Linking.openURL('mailto:admin@tppl.news')}>
-                                    admin@tppl.news
-                                </Text></Text>
-                        
-                        
-                    </View>
+                />
+
+                <View style={ContactStyles.Container}>
+                    <ScrollView style={{ marginBottom: 130 }}>
+                        <View style={{}}>
+                            <View style={ContactStyles.maincontainer}>
+                                <View style={ContactStyles.labelview}>
+                                    <Text style={ContactStyles.label}>Sales Related</Text>
+                                </View>
+                                <View style={ContactStyles.contentmainview}>
+                                    <View style={ContactStyles.contentview}>
+                                        <Image style={ContactStyles.image}
+                                            source={require('../../Assets/Images/sidemenuIcons/email.png')} />
+                                        <Text style={ContactStyles.text}> Email : Sales@ibc24.in</Text>
+                                    </View>
+                                    <View style={ContactStyles.contentview}>
+                                        <Image style={ContactStyles.image}
+                                            source={require('../../Assets/Images/sidemenuIcons/contact.png')} />
+                                        <Text style={ContactStyles.text}> Contact number : 0771-4008700</Text>
+                                    </View>
+                                </View>
+                            </View>
+
+                            <View style={ContactStyles.maincontainer}>
+                                <View style={ContactStyles.labelview}>
+                                    <Text style={ContactStyles.label}>News Related</Text>
+                                </View>
+                                <View style={ContactStyles.contentmainview}>
+                                    <View style={ContactStyles.contentview}>
+                                        <Image style={ContactStyles.image}
+                                            source={require('../../Assets/Images/sidemenuIcons/email.png')} />
+                                        <Text style={ContactStyles.text}>  Email :  Assignment@ibc24.in </Text>
+                                    </View>
+                                    <View style={ContactStyles.contentview}>
+                                        <Image style={ContactStyles.image}
+                                            source={require('../../Assets/Images/sidemenuIcons/contact.png')} />
+                                        <Text style={ContactStyles.text}>  Contact number:  0771-4008700 </Text>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={ContactStyles.maincontainer}>
+                                <View style={ContactStyles.labelview}>
+                                    <Text style={ContactStyles.label}>HR Related</Text>
+                                </View>
+                                <View style={ContactStyles.contentmainview}>
+                                    <View style={ContactStyles.contentview}>
+                                        <Image style={ContactStyles.image}
+                                            source={require('../../Assets/Images/sidemenuIcons/email.png')} />
+                                        <Text style={ContactStyles.text}>  Email :  Hr@ibc24.in </Text>
+                                    </View>
+                                    <View style={ContactStyles.contentview}>
+                                        <Image style={ContactStyles.image}
+                                            source={require('../../Assets/Images/sidemenuIcons/contact.png')} />
+                                        <Text style={ContactStyles.text}>  Contact number :  0771-4008700 </Text>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={ContactStyles.maincontainer}>
+                                <View style={ContactStyles.labelview}>
+                                    <Text style={ContactStyles.label}>Head office</Text>
+                                </View>
+                                <View style={ContactStyles.contentmainview}>
+                                    <View style={ContactStyles.contentview}>
+                                        <Image style={ContactStyles.image}
+                                            source={require('../../Assets/Images/sidemenuIcons/location.png')} />
+                                        <Text numberOfLines={3}
+                                            ellipsizeMode="tail" style={ContactStyles.text}>Postal Address :S.B MULTIMEDIA PVT LTD First Floor, Lodhipara Chowk, Raipur ,
+                                            Chhattisgarh ,492001 ( C.G.) </Text>
+                                    </View>
+                                    <View style={ContactStyles.contentview}>
+                                        <Image style={ContactStyles.image}
+                                            source={require('../../Assets/Images/sidemenuIcons/email.png')} />
+                                        <Text style={ContactStyles.text}>   Email : Sales@ibc24.in </Text>
+                                    </View>
+                                    <View style={ContactStyles.contentview}>
+                                        <Image style={ContactStyles.image}
+                                            source={require('../../Assets/Images/sidemenuIcons/contact.png')} />
+                                        <Text style={ContactStyles.text}>   Contact number : 0771-4008700 </Text>
+                                    </View>
+                                </View>
+                            </View>
+
+                            <View style={ContactStyles.maincontainer}>
+                                <View style={ContactStyles.labelview}>
+                                    <Text style={ContactStyles.label}> Central Zone</Text>
+                                </View>
+                                <View style={ContactStyles.contentmainview}>
+                                    <View style={ContactStyles.contentview}>
+                                        <Image style={ContactStyles.image}
+                                            source={require('../../Assets/Images/sidemenuIcons/location.png')} />
+                                        <Text numberOfLines={3}
+                                            ellipsizeMode="tail" style={ContactStyles.text}>Bhopal Address : 3rd Floor, Manya Arcade, Plot No - 30A Zone-II, M.P. NAGARBHOPAL - 462011
+                                        </Text>
+                                    </View>
+                                    <View style={ContactStyles.contentview}>
+                                        <Image style={ContactStyles.image}
+                                            source={require('../../Assets/Images/sidemenuIcons/email.png')} />
+                                        <Text style={ContactStyles.text}>   Email :  Assignment@ibc24.in  </Text>
+                                    </View>
+                                    <View style={ContactStyles.contentview}>
+                                        <Image style={ContactStyles.image}
+                                            source={require('../../Assets/Images/sidemenuIcons/contact.png')} />
+                                        <Text style={ContactStyles.text}>   Contact number :  0771-4008700  </Text>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={ContactStyles.maincontainer}>
+                                <View style={ContactStyles.labelview}>
+                                    <Text style={ContactStyles.label}>North Zone
+                                    </Text>
+                                </View>
+                                <View style={ContactStyles.contentmainview}>
+                                    <View style={ContactStyles.contentview}>
+                                        <Image style={ContactStyles.image}
+                                            source={require('../../Assets/Images/sidemenuIcons/location.png')} />
+                                        <Text numberOfLines={3}
+                                            ellipsizeMode="tail" style={ContactStyles.text}>Postal Address : D-56, Sector - 2 Ground Floor, NOIDA, UP 201301.
+                                        </Text>
+                                    </View>
+                                    <View style={ContactStyles.contentview}>
+                                        <Image style={ContactStyles.image}
+                                            source={require('../../Assets/Images/sidemenuIcons/email.png')} />
+                                        <Text style={ContactStyles.text}>   Email :  Hr@ibc24.in  </Text>
+                                    </View>
+                                    <View style={ContactStyles.contentview}>
+                                        <Image style={ContactStyles.image}
+                                            source={require('../../Assets/Images/sidemenuIcons/contact.png')} />
+                                        <Text style={ContactStyles.text}>   Contact number :  0771-4008700  </Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                    </ScrollView>
                 </View>
 
             </SafeAreaView>

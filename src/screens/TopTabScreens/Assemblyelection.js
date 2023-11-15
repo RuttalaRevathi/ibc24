@@ -13,9 +13,10 @@ const AssemblyelectionScreen = ({
 }: Props) => {
 
     const dispatch = useDispatch();
+
     assemblyelectionData = useSelector(state => state.assemblyelectionReducer.assemblyelectionData);
 
-
+console.log(assemblyelectionData,"...............................>");
 
     return (
         <CategoryUI

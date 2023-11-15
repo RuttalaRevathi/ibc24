@@ -1,12 +1,10 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 import React, { useEffect } from 'react';
 import { View, StyleSheet, Modal, Text, Alert } from 'react-native';
 import { Provider } from 'react-redux';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import HomeStackNavigator from './src/navigation/stack-navigators/HomeStackNavigator';
 import { store } from './src/redux/store';
-import BottomTabNavigator from './src/navigation/BottomTabNavigator';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
 import getSliderAction from './src/redux/actions/getSliderAction';
 import getLatestNewsAction from './src/redux/actions/getLatestNewsAction';
@@ -46,6 +44,7 @@ import { getAssemblyelectionAction } from './src/redux/actions/getAssemblyelecti
 import NetInfo from '@react-native-community/netinfo';
 import { TouchableOpacity } from 'react-native';
 import { useState } from 'react';
+import getWebstoriesAction from './src/redux/actions/getWebstoriesAction';
 
 const ConnectionLostModal = ({ isVisible, onRetry }) => {
   return (
@@ -73,6 +72,7 @@ const App = () => {
 
   useEffect(() => {
     store.dispatch(getSliderAction());
+    store.dispatch(getCityAction());
     store.dispatch(getLatestNewsAction());
     store.dispatch(getCinemaAction());
     store.dispatch(getRasiPhalaluAction());
@@ -89,7 +89,6 @@ const App = () => {
     store.dispatch(getWorldAction());
     store.dispatch(getKhabarBebakAction());
     store.dispatch(getMadhyapradeshAction());
-    store.dispatch(getCityAction());
     store.dispatch(getEntertainmentAction());
     store.dispatch(getVideoAction());
     store.dispatch(getPhotoGalleryAction());
@@ -106,6 +105,7 @@ const App = () => {
     store.dispatch(getPunjabAction());
     store.dispatch(getSarkariyojanaAction());
     store.dispatch(getAssemblyelectionAction);
+    store.dispatch(getWebstoriesAction());
     //hides the splash screen on app load.
   }, []);
 

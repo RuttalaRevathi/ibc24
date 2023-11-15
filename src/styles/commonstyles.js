@@ -10,9 +10,9 @@ export const Dark_graycolor = '#63666A';
 export const medium_gray = '#cacccf';
 export const blackcolor = '#000000';
 // export const gallerycolor = "#FFC300"
-export const gallerycolor = '#696AAA';
+export const gallerycolor = '#043884';
 export const light_blue = '#d8f3fc';
-export const dark_blue = '#bae6f5';
+export const dark_blue = '#043884';
 export const Header_text = '#262A85';
 export const Header_BG_Color = '#030533';
 export const TimeStamp = '#8D8D8D';
@@ -22,7 +22,7 @@ export const grid_color = '#F2D7EE';
 // export const Dark_Gray ="#63666A"
 export const dot_color = '#52b1e3';
 export const line_color = '#c7de8b';
-
+export const red_color = '#d70102';
 // export const Dark_Gray ="#63666A"
 export const Dark_Gray = '#999FA4';
 
@@ -48,9 +48,9 @@ export const commonstyles = StyleSheet.create({
     marginTop: 10,
   },
   HomeCateImg: {
-    height: 200,
+    height: 250,
     width: ITEM_WIDTH - 30,
-    borderRadius: 15,
+    // borderRadius: 5,
   },
   CategorysliderGradient: {
     width: ITEM_WIDTH - 30, flex: 1.4, bottom: 0, borderBottomLeftRadius: 15,
@@ -165,7 +165,7 @@ export const commonstyles = StyleSheet.create({
     // top: -20,
   },
   slidertext: {
-    color: blackcolor,
+    color: whitecolor,
     fontFamily: 'Mandali-Bold',
     fontSize: 22,
     marginLeft: 10,
@@ -188,7 +188,7 @@ export const commonstyles = StyleSheet.create({
     marginEnd: 5, fontFamily: 'Mandali-Bold',
   },
   phototext: {
-    color: blackcolor,
+    color: whitecolor,
     fontFamily: 'Mandali-Bold',
     fontSize: 22,
     marginLeft: 10,
@@ -417,7 +417,8 @@ export const commonstyles = StyleSheet.create({
   },
   cateviewText: {
     flex: 1.9,
-    fontFamily: 'Mandali-Regular', fontSize: 20, lineHeight: 33, justifyContent: 'center',
+    fontFamily: 'Mandali-Regular', fontSize: 20, lineHeight: 33,
+     justifyContent: 'center',
   },
   cateviewImg: { marginRight: 5, flexDirection: 'row' },
   cateflist: { paddingBottom: 100,backgroundColor:whitecolor},
@@ -518,7 +519,7 @@ export const commonstyles = StyleSheet.create({
   // CategoryComponentTwo
   catecomp2mainView:{ borderBottomColor: medium_gray, borderBottomWidth: 2 },
   catecomp2Tochable:{ flexDirection: 'row', marginTop: 10 },
-  cateview:{marginTop:7,marginStart:10},
+  cateview:{marginTop:7,},
   catetext:{ color: Dark_Gray, fontSize: 16, fontWeight: '500' },
   shareMview:{
     flexDirection: 'row', justifyContent: 'flex-end', flex: 1,

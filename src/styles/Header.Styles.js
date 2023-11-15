@@ -69,19 +69,17 @@ export const HeaderStyle = StyleSheet.create({
     },
     subHeaderheading: {
         color: blackcolor,
-        width: '100%',
+        width: '90%',
         textAlign: 'center',
         fontFamily: 'Mandali-Bold',
-        fontSize: 30,
+        fontSize: 25,
 
     },
     HeadTitleView: {
-        // justifyContent: 'flex-start',
-        // alignItems: 'flex-start',
-        // width: Dimensions.get("window").width - 100,
+   marginRight:'auto'
     },
     HeadTitleImg: {
-        height: 37, width: 240,resizeMode:'contain',
+        height: 37, width: 100,resizeMode:'contain',borderRadius:2,left:10
     },
     headerLeftView: {
         justifyContent: 'center',
@@ -99,9 +97,9 @@ export const HeaderStyle = StyleSheet.create({
          height: 30, width: 30,
           marginRight: 10
       },
-    HeadRightImg:{ height: 25, width: 25, },
+    HeadRightImg:{ height: 22, width: 22,color:blackcolor,top:3 },
 
-    HeadRightpaperImg:{ height: 20, width: 20,right:5},
+    HeadRightpaperImg:{ height: 15, width: 15,right:5},
 
 
 })

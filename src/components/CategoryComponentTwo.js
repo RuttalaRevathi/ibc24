@@ -14,7 +14,7 @@ import {
 import FastImage from 'react-native-fast-image';
 import LinearGradient from 'react-native-linear-gradient';
 import moment from 'moment';
-import { appThemeColor, blackcolor, commonstyles, Dark_Gray, Gary_Light, Header_text, medium_gray, whitecolor } from '../styles/commonstyles';
+import { appThemeColor, blackcolor, commonstyles, Dark_Gray, Gary_Light, Header_text, medium_gray, red_color, whitecolor } from '../styles/commonstyles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { ShareUrl } from '../utilities/urls';
 
@@ -42,11 +42,29 @@ class CategoryComponentTwo extends React.PureComponent {
             }}>
 
             <View style={commonstyles.cateviewText}>
-              <Text
+              {/* <Text
                 numberOfLines={4}
                 ellipsizeMode="tail"
                 style={commonstyles.HomeComp2Text}>
                 {this.props.item?.title?.rendered}
+              </Text> */}
+              <Text
+                numberOfLines={3}
+                ellipsizeMode="tail"
+                style={{ fontSize: 18, fontWeight: '700' }}>
+                {this.props?.item?.title?.rendered?.includes(':') ? (
+                  <Text style={{ color: red_color }}>
+                    {this.props?.item?.title?.rendered?.split(':')[0]}
+                    <Text style={{ color: red_color }}>:</Text>
+                    <Text style={{ color: blackcolor }}>
+                      {this.props?.item?.title?.rendered?.split(':')[1]}
+                    </Text>
+                  </Text>
+                ) : (
+                  <Text style={{ color: 'black' }}>
+                    {this.props?.item?.title?.rendered}
+                  </Text>
+                )}
               </Text>
             </View>
             <View style={commonstyles.cateviewImg}>

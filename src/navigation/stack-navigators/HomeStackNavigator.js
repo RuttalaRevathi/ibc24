@@ -31,6 +31,14 @@ import MaharashtraScreen from '../../screens/StateScreens/Maharashtra';
 import Hp from '../../screens/StateScreens/Hp';
 import HaryanaScreen from '../../screens/StateScreens/Haryana';
 import Punjab from '../../screens/StateScreens/Punjab';
+import ContactUs from '../../screens/contactScreens/ContactUs';
+import Terms from '../../screens/contactScreens/Terms';
+import PrivacyPolicy from '../../screens/contactScreens/PrivacyPolicy';
+import Complaints from '../../screens/contactScreens/Complaints';
+import BookmarkScreen from '../../screens/Bookmark';
+import Webstories from '../../screens/TopTabScreens/Webstories';
+import Livetv from '../../screens/Livetv';
+import LiveTVScreen from '../../screens/Livetv';
 const Stack = createStackNavigator();
 
 const HomeStackNavigator = () => {
@@ -48,6 +56,9 @@ const HomeStackNavigator = () => {
       <Stack.Screen name="Details" component={Details} />
       <Stack.Screen name="VideoArticle" component={VideoArticle} />
       <Stack.Screen name="PhotoArticle" component={PhotoArticle} />
+      <Stack.Screen name="Bookmark" component={BookmarkScreen} />
+      <Stack.Screen name="Webstories" component={Webstories} />
+      <Stack.Screen name="Livetv" component={LiveTVScreen} />
 
       <Stack.Screen name="Bhopal" component={Bhopal} />
       <Stack.Screen name="Indor" component={IndorScreen} />
@@ -55,7 +66,7 @@ const HomeStackNavigator = () => {
       <Stack.Screen name="Gwalior" component={GwaliorScreen} />
       <Stack.Screen name="Raipur" component={RaipurScreen} />
       <Stack.Screen name="Bilaspur" component={BilaspurScreen} />
-      <Stack.Screen name="Chhattisgarh" component={Chhattisgarh} />
+      <Stack.Screen name="Chhattisgarh" component={BiharScreen} />
       <Stack.Screen name="Madhyapradesh" component={Madhyapradesh} />
        <Stack.Screen name="Bihar" component={BiharScreen} />
        <Stack.Screen name="Up" component={Up} />
@@ -63,7 +74,11 @@ const HomeStackNavigator = () => {
       <Stack.Screen name="Hp" component={Hp} />
       <Stack.Screen name="Haryana" component={HaryanaScreen} />
      <Stack.Screen name="Punjab" component={Punjab} />
-     
+      <Stack.Screen name="Complaints" component={Complaints} />
+      <Stack.Screen name="Contact" component={ContactUs} />
+      <Stack.Screen name="Terms" component={Terms} />
+      <Stack.Screen name="Privacy" component={PrivacyPolicy} />
+
 
 
 

@@ -17,7 +17,6 @@ import { sideMenuStyle } from '../styles/SideMenuStyles';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ContactUs from '../screens/contactScreens/ContactUs';
-import AboutUs from '../screens/contactScreens/AboutUs';
 import PrivacyPolicy from '../screens/contactScreens/PrivacyPolicy';
 import Terms from '../screens/contactScreens/Terms';
 import Modal from "react-native-modal";
@@ -32,7 +31,7 @@ const DrawerNavigator = (navigation) => {
     <Drawer.Navigator
       drawerType="slide"
       // drawerPosition="left"
-      drawerStyle={{ width: 100, height: 100 }}
+      drawerStyle={{ width: 100, height: 10 }}
       drawerContent={props => <SideMenu {...props} />}
     >
       <Drawer.Screen
@@ -43,47 +42,54 @@ const DrawerNavigator = (navigation) => {
           headerRight: () => (
 
             <View style={{ flexDirection: 'row', marginRight: 10 }}>
-              {/* <TouchableOpacity style={{
-                flexDirection: 'row', marginRight: 40, borderColor: blackcolor,
-                borderWidth: 2, borderRadius: 5, width: 80, justifyContent: 'center', alignSelf: 'center', alignContent: 'center'
+              <TouchableOpacity style={{
+                flexDirection: 'row', marginRight: 20, borderColor: blackcolor,
+                borderWidth: 1.5, borderRadius: 5, width: 80, justifyContent: 'center',
+                alignSelf: 'center', alignContent: 'center', height: 25,
               }}
                 onPress={() => {
-                  // Linking.openURL('https://epaper.ntnews.com/');
+                  navigation.navigate('Livetv');
+                  // Linking.openURL('https://www.ibc24.in/live-tv');
                 }}>
                 <Image
-                  style={[HeaderStyle.HeadRightpaperImg, { marginLeft: 5 }]}
-                  source={require('../Assets/Images/paper.png')}
+                  style={[HeaderStyle.HeadRightpaperImg, { marginLeft: 5, top: 3 }]}
+                  source={require('../Assets/Images/tv.png')}
                 />
-                <Text style={{ color: blackcolor, fontSize: 15, fontWeight: '700', textAlign: 'center' }}>ई-पेपर</Text>
+                <Text style={{
+                  color: blackcolor, fontSize: 12, fontWeight: '700', top: 3,
+                  textAlign: 'center'
+                }}>लाइव टीवी</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {
-                  navigation.toggleDrawer();
+                  
                 }}>
                 <Image
                   style={HeaderStyle.HeadRightImg}
-                  source={require('../Assets/Images/user.png')}
+                  source={require('../Assets/Images/notification.png')}
                 />
-              </TouchableOpacity> */}
+              </TouchableOpacity>
             </View>
 
           ),
 
           headerLeft: () => (
             <View style={HeaderStyle.headerLeftView}>
-              <TouchableOpacity
+            <TouchableOpacity
                 onPress={() => {
                   navigation.toggleDrawer();
                 }}>
-                <Image
-                  style={HeaderStyle.headerLeftImg}
-                  source={require('../Assets/Images/menu.png')}
-                />
-              </TouchableOpacity>
-            </View>
+              <Image
+                style={HeaderStyle.HeadRightImg}
+                source={require('../Assets/Images/menu.png')}
+              />
+            </TouchableOpacity>
+          </View>
+          
           ),
           headerTitle: () => (
-            <View style={HeaderStyle.HeadTitleView}>
+            <View 
+              style={HeaderStyle.HeadTitleView}>
               <TouchableOpacity>
                 <Image
                   style={HeaderStyle.HeadTitleImg}
@@ -92,9 +98,10 @@ const DrawerNavigator = (navigation) => {
               </TouchableOpacity>
             </View>
           ),
+          
         })}
       />
-    
+
     </Drawer.Navigator>
   );
 };

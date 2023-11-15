@@ -7,12 +7,18 @@ export const ShareUrl = 'https://ibc24.in/';
 export const MenuUrl = 'menu/header';
 export const Slider = 'home-top-slider-api';
 export const CategoryUrl = 'category-posts/';
-export const LatestUrl = 'latest-news-api';
-export const WebstoriesUrl = 'webstories-api';
+export const LatestUrl = 'latest-news';
+export const WebstoriesUrl = 'webstories';
 export const RelatedUrl = 'article-related-api';
 export const Contact = 'contact-us-api';
 export const Next = 'article-next-prev-by-id-api';
 export const articleDetails = 'article-data-by-id-api';
+
+// contact screens api
+export const Privacy = 'privacy-policy';
+export const Terms = 'terms-conditions';
+export const complaints = 'complaints';
+
 
 // Category Urls
 

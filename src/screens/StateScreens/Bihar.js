@@ -1,34 +1,29 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect } from 'react';
-import { useDispatch, connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CategoryUI from '../../components/CategoryUI';
-import { getBiharAction } from '../../redux/actions/getBiharAction';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
+const BiharScreen = () => {
+  const navigation = useNavigation();
+  const route = useRoute();
 
-const BiharScreen = ({
-    navigation,
-    biharData,
-    biharLoading,
-    route,
-}: Props) => {
+  // Use useSelector to get the biharData from your Redux store
+  const biharData = useSelector((state) => state?.biharReducer?.biharData);
 
-    biharData = useSelector(state => state?.biharReducer?.biharData);
+  // Use getFocusedRouteNameFromRoute to get the currently focused tab
+  const categoryName = route.state
+    ? route.state.routes[route.state.index].name
+    : 'bihar'; // Default to 'bihar' if no tab is selected
 
-
-    return (
-        <CategoryUI
-        data = {biharData}
-        navigation = {navigation}
-        title = {route.name}
-        categoryName ="bihar"
-        />
-    );
+  return (
+    <CategoryUI
+      data={biharData}
+      navigation={navigation}
+      title={categoryName}
+      categoryName={categoryName}
+    />
+  );
 };
-
-type Props = {
-    biharData: Function,
-    biharLoading: Boolean,
-};
-
 
 export default BiharScreen;
