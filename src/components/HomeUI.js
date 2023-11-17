@@ -42,7 +42,7 @@ function HomeUI(props, { navigation }) {
     />
   );
   return (
-    <SafeAreaView styles={commonstyles.container}>
+    <SafeAreaView style={commonstyles.container}>
       <View>
         {/* category name */}
         <View style={{

@@ -18,45 +18,49 @@ export default class SideMenu extends Component {
         this.state = {
             DrawerItem: false,
             StateItem: false,
+            isModalVisible: false,
+            shouldShowCity: false,
+            shouldShowState: false,
         };
     }
     CityNestedDrawerItem = () => {
-        if (this.state.DrawerItem === true) {
-            this.setState({ DrawerItem: false });
-        }
-        else {
-            this.setState({ DrawerItem: true });
-        }
-    }
+        this.setState((prevState) => ({
+            shouldShowCity: !prevState.shouldShowCity,
+        }));
+    };
+
     StateNestedDrawerItem = () => {
-        if (this.state.StateItem === true) {
-            this.setState({ StateItem: false });
-        }
-        else {
-            this.setState({ StateItem: true });
-        }
-    }
+        this.setState((prevState) => ({
+            shouldShowState: !prevState.shouldShowState,
+        }));
+    };
+
+    openModal = () => {
+        this.props.navigation.closeDrawer();
+        this.setState({ isModalVisible: true });
+    };
+
+    closeModal = () => {
+        this.setState({ isModalVisible: false });
+    };
 
     render() {
-        const { isNightMode, toggleNightMode } = this.context;
+        const { isVisible, onClose } = this.props;
         return (
             <SafeAreaView style={{ flex: 1 }}>
 
                 <View style={{ flex: 1 }}>
 
-                    <View style={{ backgroundColor: whitecolor, alignSelf: 'flex-end', padding: 10 }}>
-                        {/* <View style={[styles.container, isNightMode && styles.nightMode]}>
-                            <Text style={styles.text}>Hello, React Native!</Text>
-                            <Button title="Toggle Night Mode" onPress={toggleNightMode} />
-                        </View> */}
-                        <View style={{ width: '90%' }}>
-                            <TouchableOpacity onPress={() => {
-                                this.props.navigation.closeDrawer();
-                            }}>
-
-                                <Image style={{ width: 25, height: 25 }}
-                                    source={require('../Assets/Images/cancel.png')} />
-
+                    <View style={{ backgroundColor: whitecolor, height: 90 }}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 30 }}>
+                            <Image
+                                style={{ width: '40%', height: 40, resizeMode: 'contain' }}
+                                source={require('../Assets/Images/ibclogo.png')}
+                            />
+                        </View>
+                        <View style={{ alignSelf: 'flex-end', padding: 10, position: 'absolute', }}>
+                            <TouchableOpacity onPress={this.openModal}>
+                                <Image style={{ width: 25, height: 25 }} source={require('../Assets/Images/day_night.png')} />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -413,7 +417,7 @@ export default class SideMenu extends Component {
                             style={sideMenuStyle.item}
                             icon={({ color, size }) => (
                                 <Image
-                                    source={require('../Assets/Images/home.png')}
+                                    source={require('../Assets/Images/sidemenuIcons/bank.png')}
                                     style={sideMenuStyle.icon}
                                 />
                             )}
@@ -453,42 +457,36 @@ export default class SideMenu extends Component {
                         />
 
                         {/*contact screens  */}
-                        <DrawerItem
-                            // style={sideMenuStyle.item}
 
-                            label="Complaints"
-                            labelStyle={sideMenuStyle.text}
-                            onPress={() => {
-                                this.props.navigation.navigate('Complaints');
-                            }}
-                        />
                         <DrawerItem
-                            // style={sideMenuStyle.item}
-
-                            label="Contact Us"
-                            labelStyle={sideMenuStyle.text}
-                            onPress={() => {
-                                this.props.navigation.navigate('Contact');
-                            }}
-                        />
-                        <DrawerItem
-                            // style={sideMenuStyle.item}
-
-                            label="Terms and Conditions"
-                            labelStyle={sideMenuStyle.text}
-                            onPress={() => {
-                                this.props.navigation.navigate('Terms');
-                            }}
-                        />
-                        <DrawerItem
-                            // style={sideMenuStyle.item}
-
-                            label="Privacy Policy"
+                            style={sideMenuStyle.item}
+                            icon={({ color, size }) => (
+                                <Image
+                                    source={require('../Assets/Images/sidemenuIcons/privacy.png')}
+                                    style={sideMenuStyle.icon}
+                                />
+                            )}
+                            label="प्राइवेसी पॉलीसी"
                             labelStyle={sideMenuStyle.text}
                             onPress={() => {
                                 this.props.navigation.navigate('Privacy');
                             }}
                         />
+                        <DrawerItem
+
+                            icon={({ color, size }) => (
+                                <Image
+                                    source={require('../Assets/Images/settings.png')}
+                                    style={sideMenuStyle.icon}
+                                />
+                            )}
+                            label="सेटिंग"
+                            labelStyle={sideMenuStyle.text}
+                            onPress={() => {
+                                this.props.navigation.navigate('Settings');
+                            }}
+                        />
+
 
                         <DrawerItem
                             label="App Version - V1.0"
@@ -508,6 +506,19 @@ export default class SideMenu extends Component {
                     </ScrollView>
 
                 </View >
+
+                <Modal
+                    visible={this.state.isModalVisible}
+                    animationType="slide"
+                    onRequestClose={this.closeModal}
+                >
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center',}}>
+                        <Text>This is your modal content!</Text>
+                        <TouchableOpacity onPress={this.closeModal}>
+                            <Text>Close Modal</Text>
+                        </TouchableOpacity>
+                    </View>
+                </Modal>
             </SafeAreaView>
         );
 
@@ -517,16 +528,16 @@ export default class SideMenu extends Component {
 }
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: 'white', // Default background color for day mode
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white', // Default background color for day mode
     },
     nightMode: {
-      backgroundColor: 'black', // Background color for night mode
+        backgroundColor: 'black', // Background color for night mode
     },
     text: {
-      fontSize: 20,
-      color: 'black', // Text color for day mode
+        fontSize: 20,
+        color: 'black', // Text color for day mode
     },
-  });
+});

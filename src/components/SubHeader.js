@@ -22,7 +22,7 @@ export default function SubHeader(props, {navigation}) {
 
         </TouchableOpacity>
       </View>
-      <View style={{flex: 1}}>
+      <View style={{flex: 1.8}}>
         <Text style={[HeaderStyle.subHeaderheading]}>{props.title}</Text>
       </View>
 

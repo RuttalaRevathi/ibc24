@@ -19,7 +19,7 @@ export default class Complaints extends Component {
   }
   render() {
     return (
-      <SafeAreaView styles={commonstyles.container}>
+      <SafeAreaView style={commonstyles.container}>
         <SubHeader
           title={'Complaints'}
           leftBtnClick={() => this.props.navigation.goBack()}

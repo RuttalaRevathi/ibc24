@@ -22,7 +22,7 @@ export const grid_color = '#F2D7EE';
 // export const Dark_Gray ="#63666A"
 export const dot_color = '#52b1e3';
 export const line_color = '#c7de8b';
-export const red_color = '#d70102';
+export const red_color = '#c8221e';
 // export const Dark_Gray ="#63666A"
 export const Dark_Gray = '#999FA4';
 
@@ -98,7 +98,7 @@ export const commonstyles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor:whitecolor,
-      flex:1,
+     
   },
   spinnerView: { justifyContent: 'center', alignItems: 'center', marginTop: 100 },
   spinnerText: { fontSize: 16, textAlign: 'center', color: '#000000' },
@@ -525,9 +525,15 @@ export const commonstyles = StyleSheet.create({
     flexDirection: 'row', justifyContent: 'flex-end', flex: 1,
     marginTop: 10, marginBottom: 10, width: 80, marginLeft: 'auto'
   },
-  imgview:{ marginRight: 8, marginTop: 4, },
+  imgview:{ marginRight: 8, marginTop: 4 },
   shareimage:{ height: 18, width: 18, color: Dark_Gray, resizeMode: 'contain' },
   shareview:{ marginRight: 15 },
-  sharetext:{ color: Dark_Gray, fontSize: 16, fontWeight: '500' }
+  sharetext:{ color: Dark_Gray, fontSize: 16, fontWeight: '500' },
+  settingview:{
+    paddingHorizontal: 10, marginTop: 20, flexDirection: 'row',
+    borderBottomColor: graycolor, borderBottomWidth: 1, height: 40
+},
+settingimg:{ width: 20, height: 20, color: blackcolor },
+settingtext:{ color: blackcolor, fontSize: 16, marginLeft: 10 },
 
 });

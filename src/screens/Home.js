@@ -86,6 +86,7 @@ import { getAssemblyelectionAction } from '../redux/actions/getAssemblyelectionA
 import HomeStoriesItem from '../components/HomeStoriesItem';
 
 
+
 const Home = ({
   navigation,
   sliderData,
@@ -201,13 +202,50 @@ const Home = ({
   webstoriesLoading = useSelector(state => state.webstoriesReducer.webstoriesLoading,);
   const dispatch = useDispatch();
   const flatListRef = useRef(null);
+  const [isBreakingNewsVisible, setIsBreakingNewsVisible] = useState(true);
 
+  const handleCancelBreakingNews = () => {
+    setIsBreakingNewsVisible(false);
+  };
+
+
+  const BreakingNews = ({ onCancel }) => {
+    
+    return (
+      <View style={{ backgroundColor: 'red', height: 80 }}>
+        <View style={{ flexDirection: 'row', height: 40, alignItems: 'center', marginLeft: 5 }}>
+          <View>
+            <Text style={{ color: 'white', fontWeight: '700', fontSize: 20 }}>Breaking News</Text>
+          </View>
+          <View style={{ marginLeft: 'auto', marginRight: 10 }}>
+            <TouchableOpacity onPress={onCancel}>
+              <Image style={{ width: 25, height: 25, tintColor: 'white' }} source={require('../Assets/Images/cancel_white.png')} />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <FlatList
+          data={latestNews?.data}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <View style={{ paddingHorizontal: 10, marginTop: 10 }}>
+              <Text style={{ color: 'white', fontSize: 16 }} numberOfLines={1}>
+                {item?.title?.rendered}
+              </Text>
+            </View>
+          )}
+          keyExtractor={(item, index) => index.toString()}
+          ref={flatListRef}
+        />
+      </View>
+    );
+  };
   useEffect(() => {
     const scrollInterval = setInterval(() => {
       if (flatListRef.current) {
         flatListRef.current.scrollToEnd({ animated: true });
       }
-    }, 3000); // Adjust the interval time as needed
+    }, 1000); // Adjust the interval time as needed
 
     return () => clearInterval(scrollInterval);
   }, []);
@@ -289,42 +327,10 @@ const Home = ({
     <SafeAreaView style={{ flex: 1 }}>
 
       {/* Breaking News */}
-      <View style={{ backgroundColor: red_color, height: 70 }}>
-        <View style={{ flexDirection: 'row', height: 40, alignItems: 'center' }}>
-          <View>
-            <Text style={{ color: whitecolor }}>Breaking News</Text>
-
-          </View>
-          <View style={{ marginLeft: 'auto', marginRight: 10 }}>
-            <TouchableOpacity onPress={() => {
-
-            }}>
-
-              <Image style={{ width: 25, height: 25, color: whitecolor }}
-                source={require('../Assets/Images/cancel.png')} />
-
-            </TouchableOpacity>
-          </View>
-
-        </View>
-
-
-        <FlatList
-      data={latestNews?.data}
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      renderItem={({ item }) => (
-        <View style={{ paddingHorizontal: 10 }}>
-          <Text style={{ color: 'white' }} numberOfLines={1}>
-            {item?.title?.rendered}
-          </Text>
-        </View>
+      {isBreakingNewsVisible && (
+        <BreakingNews onCancel={handleCancelBreakingNews} />
       )}
-      keyExtractor={(item, index) => index.toString()}
-      ref={flatListRef}
-    />
 
-      </View>
       <ScrollView style={commonstyles.scroll} refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }>

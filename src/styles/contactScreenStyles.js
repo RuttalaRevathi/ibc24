@@ -25,7 +25,7 @@ export const ContactStyles = StyleSheet.create({
 
     contentview: { flexDirection: 'row', bottom: 10, width: '90%' },
 
-    image: { width: 20, height: 20, top: 2 },
+    image: { width: 20, height: 20, top: 6 },
 
     text: { color: blackcolor, fontSize: 18, fontWeight: '600', left: 5, lineHeight: 30 },
     title: {

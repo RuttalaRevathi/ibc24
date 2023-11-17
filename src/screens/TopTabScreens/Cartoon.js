@@ -37,7 +37,7 @@ const Cartoon = ({ navigation,
     }, []);
 
     return (
-        <SafeAreaView styles={commonstyles.container}>
+        <SafeAreaView style={commonstyles.container}>
             <SubHeader
                 title={"కార్టూన్"}
                 isMenu={false}

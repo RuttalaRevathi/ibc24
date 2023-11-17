@@ -39,6 +39,7 @@ import BookmarkScreen from '../../screens/Bookmark';
 import Webstories from '../../screens/TopTabScreens/Webstories';
 import Livetv from '../../screens/Livetv';
 import LiveTVScreen from '../../screens/Livetv';
+import Settings from '../../screens/Settings';
 const Stack = createStackNavigator();
 
 const HomeStackNavigator = () => {
@@ -59,6 +60,7 @@ const HomeStackNavigator = () => {
       <Stack.Screen name="Bookmark" component={BookmarkScreen} />
       <Stack.Screen name="Webstories" component={Webstories} />
       <Stack.Screen name="Livetv" component={LiveTVScreen} />
+      <Stack.Screen name="Settings" component={Settings} />
 
       <Stack.Screen name="Bhopal" component={Bhopal} />
       <Stack.Screen name="Indor" component={IndorScreen} />
@@ -78,14 +80,6 @@ const HomeStackNavigator = () => {
       <Stack.Screen name="Contact" component={ContactUs} />
       <Stack.Screen name="Terms" component={Terms} />
       <Stack.Screen name="Privacy" component={PrivacyPolicy} />
-
-
-
-
-
-     
-      
-      
 
     </Stack.Navigator>
   )

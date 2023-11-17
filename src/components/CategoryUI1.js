@@ -53,7 +53,7 @@ function  CategoryUI1(props, { navigation }) {
 
   return (
   
-    <SafeAreaView styles={commonstyles.container}>
+    <SafeAreaView style={commonstyles.container}>
       {/* <SubHeader
         title={props.title}
         isMenu={false}

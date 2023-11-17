@@ -46,7 +46,7 @@ const LatestNews = ({
   );
   return (
     // <View><Text>Latest News</Text></View>
-    <SafeAreaView styles={commonstyles.container}>
+    <SafeAreaView style={commonstyles.container}>
      
       <ScrollView style={commonstyles.scroll}>
         <View>

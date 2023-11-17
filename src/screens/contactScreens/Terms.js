@@ -23,7 +23,7 @@ export default class Terms extends Component {
   }
   render() {
     return (
-      <SafeAreaView styles={commonstyles.container}>
+      <SafeAreaView style={commonstyles.container}>
         <SubHeader
           title={'Terms & Conditions '}
 

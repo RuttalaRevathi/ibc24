@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { Component } from 'react';
-import { Text, View, SafeAreaView, Linking, Image, ScrollView } from 'react-native';
+import { Text, View, SafeAreaView, Linking, Image, ScrollView, TouchableOpacity } from 'react-native';
 import SubHeader from '../../components/SubHeader';
 import { blackcolor, commonstyles, gallerycolor, whitecolor } from '../../styles/commonstyles';
 import { ContactStyles } from '../../styles/contactScreenStyles';
@@ -10,16 +10,25 @@ export default class ContactUs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ContactData: []
         };
     }
 
 
     render() {
-
-
+        const salesMail = () => {
+            Linking.openURL('mailto:Sales@ibc24.in');
+        };
+        const assignmentMail = () => {
+            Linking.openURL('mailto:Assignment@ibc24.in');
+        };
+        const hrMail = () => {
+            Linking.openURL('mailto:Hr@ibc24.in');
+        };
+        const salesContact = () => {
+            Linking.openURL('tel:0771-4008700');
+        };
         return (
-            <SafeAreaView styles={commonstyles.container}>
+            <SafeAreaView style={commonstyles.container}>
 
                 <SubHeader title={'Contact Us '} isMenu={false} isBook={false} isShare={false}
                     leftBtnClick={() => this.props.navigation.goBack()}
@@ -37,12 +46,16 @@ export default class ContactUs extends Component {
                                     <View style={ContactStyles.contentview}>
                                         <Image style={ContactStyles.image}
                                             source={require('../../Assets/Images/sidemenuIcons/email.png')} />
-                                        <Text style={ContactStyles.text}> Email : Sales@ibc24.in</Text>
+                                        <TouchableOpacity onPress={salesMail}>
+                                            <Text style={ContactStyles.text}> Email : Sales@ibc24.in</Text>
+                                        </TouchableOpacity>
                                     </View>
                                     <View style={ContactStyles.contentview}>
                                         <Image style={ContactStyles.image}
                                             source={require('../../Assets/Images/sidemenuIcons/contact.png')} />
-                                        <Text style={ContactStyles.text}> Contact number : 0771-4008700</Text>
+                                        <TouchableOpacity onPress={salesContact}>
+                                            <Text style={ContactStyles.text}> Contact number : 0771-4008700</Text>
+                                   </TouchableOpacity>
                                     </View>
                                 </View>
                             </View>
@@ -55,12 +68,16 @@ export default class ContactUs extends Component {
                                     <View style={ContactStyles.contentview}>
                                         <Image style={ContactStyles.image}
                                             source={require('../../Assets/Images/sidemenuIcons/email.png')} />
+                                       <TouchableOpacity onPress={assignmentMail}>
                                         <Text style={ContactStyles.text}>  Email :  Assignment@ibc24.in </Text>
+                                        </TouchableOpacity>
                                     </View>
                                     <View style={ContactStyles.contentview}>
                                         <Image style={ContactStyles.image}
                                             source={require('../../Assets/Images/sidemenuIcons/contact.png')} />
+                                        <TouchableOpacity onPress={salesContact}>
                                         <Text style={ContactStyles.text}>  Contact number:  0771-4008700 </Text>
+                                        </TouchableOpacity>
                                     </View>
                                 </View>
                             </View>
@@ -72,12 +89,16 @@ export default class ContactUs extends Component {
                                     <View style={ContactStyles.contentview}>
                                         <Image style={ContactStyles.image}
                                             source={require('../../Assets/Images/sidemenuIcons/email.png')} />
+                                       <TouchableOpacity onPress={hrMail}>
                                         <Text style={ContactStyles.text}>  Email :  Hr@ibc24.in </Text>
+                                        </TouchableOpacity>
                                     </View>
                                     <View style={ContactStyles.contentview}>
                                         <Image style={ContactStyles.image}
                                             source={require('../../Assets/Images/sidemenuIcons/contact.png')} />
+                                        <TouchableOpacity onPress={salesContact}>
                                         <Text style={ContactStyles.text}>  Contact number :  0771-4008700 </Text>
+                                        </TouchableOpacity>
                                     </View>
                                 </View>
                             </View>
@@ -96,12 +117,16 @@ export default class ContactUs extends Component {
                                     <View style={ContactStyles.contentview}>
                                         <Image style={ContactStyles.image}
                                             source={require('../../Assets/Images/sidemenuIcons/email.png')} />
+                                        <TouchableOpacity onPress={salesMail}>
                                         <Text style={ContactStyles.text}>   Email : Sales@ibc24.in </Text>
+                                        </TouchableOpacity>
                                     </View>
                                     <View style={ContactStyles.contentview}>
                                         <Image style={ContactStyles.image}
                                             source={require('../../Assets/Images/sidemenuIcons/contact.png')} />
+                                       <TouchableOpacity onPress={salesContact}>
                                         <Text style={ContactStyles.text}>   Contact number : 0771-4008700 </Text>
+                                        </TouchableOpacity>
                                     </View>
                                 </View>
                             </View>
@@ -121,12 +146,16 @@ export default class ContactUs extends Component {
                                     <View style={ContactStyles.contentview}>
                                         <Image style={ContactStyles.image}
                                             source={require('../../Assets/Images/sidemenuIcons/email.png')} />
+                                       <TouchableOpacity onPress={assignmentMail}>
                                         <Text style={ContactStyles.text}>   Email :  Assignment@ibc24.in  </Text>
+                                        </TouchableOpacity>
                                     </View>
                                     <View style={ContactStyles.contentview}>
                                         <Image style={ContactStyles.image}
                                             source={require('../../Assets/Images/sidemenuIcons/contact.png')} />
+                                       <TouchableOpacity onPress={salesContact}>
                                         <Text style={ContactStyles.text}>   Contact number :  0771-4008700  </Text>
+                                        </TouchableOpacity>
                                     </View>
                                 </View>
                             </View>
@@ -146,12 +175,16 @@ export default class ContactUs extends Component {
                                     <View style={ContactStyles.contentview}>
                                         <Image style={ContactStyles.image}
                                             source={require('../../Assets/Images/sidemenuIcons/email.png')} />
+                                        <TouchableOpacity onPress={hrMail}>
                                         <Text style={ContactStyles.text}>   Email :  Hr@ibc24.in  </Text>
+                                        </TouchableOpacity>
                                     </View>
                                     <View style={ContactStyles.contentview}>
                                         <Image style={ContactStyles.image}
                                             source={require('../../Assets/Images/sidemenuIcons/contact.png')} />
+                                        <TouchableOpacity onPress={salesContact}>
                                         <Text style={ContactStyles.text}>   Contact number :  0771-4008700  </Text>
+                                        </TouchableOpacity>
                                     </View>
                                 </View>
                             </View>
