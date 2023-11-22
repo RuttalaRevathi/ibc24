@@ -56,11 +56,13 @@ function TopTabNavigator({ navigation }) {
       <TopTab.Screen name="शहर" component={City} />
       {/* <TopTab.Screen name="विधानसभा चुनाव 2023" component={AssemblyelectionScreen} /> */}
       <TopTab.Screen name="प्रदेश" component={State} />
+      <TopTab.Screen name="फोटोगैलरी" component={PhotoGallery} />
+
       <TopTab.Screen name="देश" component={Country} />
       <TopTab.Screen name="दुनिया" component={World} />
       <TopTab.Screen name="खेल" component={Sports} />
       <TopTab.Screen name="वीडियो" component={Videos} />
-      <TopTab.Screen name="फोटो गैलरी" component={PhotoGallery} />
+      {/* <TopTab.Screen name="फोटोगैलरी" component={PhotoGallery} /> */}
       <TopTab.Screen name="बिज़नेस" component={Business} />
       <TopTab.Screen name="एंटरटेनमेंट" component={Entertainment} />
       <TopTab.Screen name="Khabar Bebak" component={KhabarBebak} />

@@ -19,6 +19,7 @@ export const getBhopalAction = () => {
 
       });
       const json = await result.json();
+      // console.log(json,"bhopal data===================>");
       if (json) {
         dispatch({
           type: GET_BHOPAL_SUCCESS,

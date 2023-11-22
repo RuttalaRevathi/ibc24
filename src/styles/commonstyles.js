@@ -34,9 +34,9 @@ export const ITEM_WIDTH = Math.round(SLIDER_WIDTH);
 export const commonstyles = StyleSheet.create({
   // 24/8/23
   THighliet: {
-       width: 80,
+    width: 80,
     marginLeft: 'auto',
-   
+
   },
   // new styles
   scroll: { backgroundColor: whitecolor },
@@ -93,12 +93,11 @@ export const commonstyles = StyleSheet.create({
     borderRadius: 10, resizeMode: 'contain', margin: 5,
     aspectRatio: 3 / 3,
   },
-  //
+
   container: {
-    width: '100%',
-    height: '100%',
-    backgroundColor:whitecolor,
-     
+    // width: '100%',
+    // height: '100%',
+    // backgroundColor: whitecolor,
   },
   spinnerView: { justifyContent: 'center', alignItems: 'center', marginTop: 100 },
   spinnerText: { fontSize: 16, textAlign: 'center', color: '#000000' },
@@ -106,7 +105,7 @@ export const commonstyles = StyleSheet.create({
     marginTop: 10,
     alignItems: 'center',
   },
- 
+
   menuview: {
     // backgroundColor: appThemeColor,
     alignItems: 'center',
@@ -134,11 +133,11 @@ export const commonstyles = StyleSheet.create({
   latestimgTag: {
     width: '100%',
     height: 130,
-  borderRadius:10,
+    borderRadius: 10,
   },
   latestTxtTag: {
     color: blackcolor, fontFamily: 'Mandali-Regular',
-    fontSize: 16, lineHeight: 25, left: 5, right: 2, paddingRight: 20,fontWeight:'700'
+    fontSize: 16, lineHeight: 25, left: 5, right: 2, paddingRight: 20, fontWeight: '700'
   },
   slidercard: {
     height: 250,
@@ -172,7 +171,7 @@ export const commonstyles = StyleSheet.create({
     marginRight: 10,
     lineHeight: 29,
     bottom: 10,
-   justifyContent:'center'
+    justifyContent: 'center'
   },
   photoview: {
     backgroundColor: gallerycolor,
@@ -418,10 +417,10 @@ export const commonstyles = StyleSheet.create({
   cateviewText: {
     flex: 1.9,
     fontFamily: 'Mandali-Regular', fontSize: 20, lineHeight: 33,
-     justifyContent: 'center',
+    justifyContent: 'center',
   },
   cateviewImg: { marginRight: 5, flexDirection: 'row' },
-  cateflist: { paddingBottom: 100,backgroundColor:whitecolor},
+  cateflist: { paddingBottom: 100, backgroundColor: whitecolor },
   photoflist: { paddingBottom: 150, top: 10, margin: 5 },
 
   videoImg: {
@@ -469,11 +468,6 @@ export const commonstyles = StyleSheet.create({
     top: 25,
   },
   categoryMview: { flexDirection: 'row', bottom: 5, flex: 1 },
-  moreview: { alignContent: 'flex-end', alignItems: 'flex-end' },
-  moretext: {
-    fontFamily: 'RobotoCondensed-Regular',
-    fontSize: 18, color: appThemeColor,
-  },
   loadingview: {
     flex: 1,
     justifyContent: 'center',
@@ -517,23 +511,35 @@ export const commonstyles = StyleSheet.create({
     fontSize: 18, color: appThemeColor,
   },
   // CategoryComponentTwo
-  catecomp2mainView:{ borderBottomColor: medium_gray, borderBottomWidth: 2 },
-  catecomp2Tochable:{ flexDirection: 'row', marginTop: 10 },
-  cateview:{marginTop:7,},
-  catetext:{ color: Dark_Gray, fontSize: 16, fontWeight: '500' },
-  shareMview:{
+  catecomp2mainView: { borderBottomColor: medium_gray, borderBottomWidth: 2 },
+  catecomp2Tochable: { flexDirection: 'row', marginTop: 10 },
+  cateview: { marginTop: 7, },
+  catetext: { color: Dark_Gray, fontSize: 16, fontWeight: '500' },
+  shareMview: {
     flexDirection: 'row', justifyContent: 'flex-end', flex: 1,
     marginTop: 10, marginBottom: 10, width: 80, marginLeft: 'auto'
   },
-  imgview:{ marginRight: 8, marginTop: 4 },
-  shareimage:{ height: 18, width: 18, color: Dark_Gray, resizeMode: 'contain' },
-  shareview:{ marginRight: 15 },
-  sharetext:{ color: Dark_Gray, fontSize: 16, fontWeight: '500' },
-  settingview:{
+  imgview: { marginRight: 8, marginTop: 4 },
+  shareimage: { height: 18, width: 18, color: Dark_Gray, resizeMode: 'contain' },
+  shareview: { marginRight: 15 },
+  sharetext: { color: Dark_Gray, fontSize: 16, fontWeight: '500' },
+  settingview: {
     paddingHorizontal: 10, marginTop: 20, flexDirection: 'row',
     borderBottomColor: graycolor, borderBottomWidth: 1, height: 40
-},
-settingimg:{ width: 20, height: 20, color: blackcolor },
-settingtext:{ color: blackcolor, fontSize: 16, marginLeft: 10 },
-
+  },
+  settingimg: { width: 20, height: 20, color: blackcolor },
+  settingtext: { color: blackcolor, fontSize: 16, marginLeft: 10 },
+  // homeui
+  moreview: {
+    marginRight: 20, borderColor: red_color, marginLeft: 'auto',
+    borderWidth: 1.5, borderRadius: 5, width: 60, justifyContent: 'center',
+    alignSelf: 'center', alignContent: 'center', height: 25, bottom: 10,
+  },
+  moretext:{ textAlign: 'center', color: red_color, fontWeight: '800' },
+  homeuicatetext:{ color: blackcolor, fontSize: 23, fontWeight: '900' },
+  homeuimainview:{
+    flexDirection: 'row', left: 5, marginTop: 20, marginBottom: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: medium_gray
+  },
 });

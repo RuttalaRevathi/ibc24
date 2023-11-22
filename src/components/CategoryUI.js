@@ -23,7 +23,7 @@ import CategoryComponentTwo from './CategoryComponentTwo';
 function CategoryUI(props, { navigation }) {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(10);
 
   useEffect(() => {
     // Use props.data?.data as the source of articles
@@ -43,7 +43,8 @@ function CategoryUI(props, { navigation }) {
   const loadMoreArticles = () => {
     setPage(page + 1);
   };
-
+  {
+    }
   return (
     <SafeAreaView style={commonstyles.container}>
       <ScrollView style={commonstyles.scroll}>

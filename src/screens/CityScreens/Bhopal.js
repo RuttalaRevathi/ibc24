@@ -17,7 +17,9 @@ const BhopalScreen = ({
     useEffect(() => {
         dispatch(getBhopalAction());
     }, []);
-
+    // {
+    //     console.log(bhopalData,"=======================>bhopal screen");
+    //     }
 
     return (
         <CategoryUI
@@ -26,6 +28,7 @@ const BhopalScreen = ({
         title = {route.name}
         categoryName ="bhopal"
         />
+        
     );
 };
 

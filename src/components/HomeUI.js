@@ -45,39 +45,18 @@ function HomeUI(props, { navigation }) {
     <SafeAreaView style={commonstyles.container}>
       <View>
         {/* category name */}
-        <View style={{
-          flexDirection: 'row', left: 5, marginTop: 20, marginBottom: 20,
-          borderBottomWidth: 1,
-          borderBottomColor: medium_gray
-        }}>
+        <View style={commonstyles.homeuimainview}>
           <View style={{ bottom: 10 }}>
-            <Text style={{ color: blackcolor, fontSize: 23, fontWeight: '900' }}>{props?.categoryName}</Text>
+            <Text style={commonstyles.homeuicatetext}>{props?.categoryName}</Text>
           </View>
-          <TouchableOpacity style={{
-            marginRight: 20, borderColor: red_color, marginLeft: 'auto',
-            borderWidth: 1.5, borderRadius: 5, width: 60, justifyContent: 'center',
-            alignSelf: 'center', alignContent: 'center', height: 25, bottom: 10,
-          }}
+          <TouchableOpacity style={commonstyles.moreview}
             onPress={() => {
               props.navigation.navigate(props.navigationScreen);
             }}>
-            <View style={{
-
-            }}>
-              <Text style={{ textAlign: 'center', color: red_color, fontWeight: '800' }}>सभी देख</Text>
+            <View >
+              <Text style={commonstyles.moretext}>सभी देख</Text>
             </View>
           </TouchableOpacity>
-
-
-          {/* <View style={commonstyles.categoryMview}>
-          <View style={commonstyles.categoryView}>
-            <View>
-              <Text style={commonstyles.Category}>{props?.categoryName}</Text>
-            </View>
-            <View style={commonstyles.dot}>
-              <FontAwesome name="circle" size={10} color={appThemeColor} />
-            </View>
-          </View> */}
         </View>
         {/* flatlist for Latest News */}
         <View>
@@ -109,17 +88,7 @@ function HomeUI(props, { navigation }) {
             </View>
           </View>
         </View>
-        {/* more text */}
-        {/* <View style={commonstyles.moreview}>
-          <TouchableOpacity
-            onPress={() => {
-              props.navigation.navigate(props.navigationScreen);
-            }}>
-            <Text style={commonstyles.moretext}>More . . .</Text>
-
-          </TouchableOpacity>
-        </View> */}
-        {/* </View> */}
+        
       </View>
     </SafeAreaView>
   );

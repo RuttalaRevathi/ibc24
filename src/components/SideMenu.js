@@ -507,7 +507,7 @@ export default class SideMenu extends Component {
 
                 </View >
 
-                <Modal
+                {/* <Modal
                     visible={this.state.isModalVisible}
                     animationType="slide"
                     onRequestClose={this.closeModal}
@@ -518,7 +518,7 @@ export default class SideMenu extends Component {
                             <Text>Close Modal</Text>
                         </TouchableOpacity>
                     </View>
-                </Modal>
+                </Modal> */}
             </SafeAreaView>
         );
 

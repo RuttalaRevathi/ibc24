@@ -216,7 +216,19 @@ const Details = ({ navigation,
 
             />
           </View>
-         
+          {/* next Articles */}
+          <View>
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              persistentScrollbar={false}
+              data={detailsData?.slice(
+                getIndex(),
+                getIndex() + 10,
+
+              )}
+              renderItem={renderItemTwo}
+            />
+          </View>
         
         </View>
       </ScrollView>

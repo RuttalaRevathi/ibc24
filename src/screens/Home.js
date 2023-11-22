@@ -23,6 +23,7 @@ import {
   SafeAreaView,
   RefreshControl,
   Animated,
+  Easing,
 } from 'react-native';
 import getSliderAction from '../redux/actions/getSliderAction';
 
@@ -84,7 +85,7 @@ import getPunjabAction from '../redux/actions/getPunjabAction';
 import getReligionAction from '../redux/actions/getReligionAction';
 import { getAssemblyelectionAction } from '../redux/actions/getAssemblyelectionAction';
 import HomeStoriesItem from '../components/HomeStoriesItem';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const Home = ({
@@ -201,55 +202,105 @@ const Home = ({
   webstoriesData = useSelector(state => state.webstoriesReducer.webstoriesData);
   webstoriesLoading = useSelector(state => state.webstoriesReducer.webstoriesLoading,);
   const dispatch = useDispatch();
+  const scrollX = useRef(new Animated.Value(0)).current;
   const flatListRef = useRef(null);
   const [isBreakingNewsVisible, setIsBreakingNewsVisible] = useState(true);
 
+ 
+  useEffect(() => {
+    const totalWidth = latestNews?.data?.length * 200; // Assuming 200 is an average width for each item
+    const endOffset = totalWidth - 200; // Subtracting 200 for the screen width
+    const scroll = () => {
+      Animated.timing(scrollX, {
+        toValue: 1,
+        duration: 3000, // Adjust the duration for the speed of scrolling
+        // easing: Easing.linear,
+        useNativeDriver: true,
+        isInteraction: false,
+      }).start(() => {
+        if (flatListRef.current) {
+          flatListRef.current.scrollToOffset({ offset: 0, animated: false });
+        }
+        scroll();
+      });
+    };
+
+    scroll();
+  }, []);
+  useEffect(() => {
+    const loadBreakingNewsVisibility = async () => {
+      try {
+        const visibilityState = await AsyncStorage.getItem('breakingNewsVisibility');
+        if (visibilityState !== null) {
+          setIsBreakingNewsVisible(visibilityState === 'true');
+        }
+      } catch (error) {
+        console.error('Error loading breaking news visibility state:', error);
+      }
+    };
+
+    loadBreakingNewsVisibility();
+  }, []);
+
+  // Function to toggle breaking news visibility and update AsyncStorage
   const handleCancelBreakingNews = () => {
-    setIsBreakingNewsVisible(false);
+    setIsBreakingNewsVisible(false); // Function to hide Breaking News
   };
 
+ 
+  const renderItem = ({ item }) => {
+    let decode = require('html-entities-decoder');
 
-  const BreakingNews = ({ onCancel }) => {
-    
     return (
-      <View style={{ backgroundColor: 'red', height: 80 }}>
-        <View style={{ flexDirection: 'row', height: 40, alignItems: 'center', marginLeft: 5 }}>
-          <View>
-            <Text style={{ color: 'white', fontWeight: '700', fontSize: 20 }}>Breaking News</Text>
-          </View>
-          <View style={{ marginLeft: 'auto', marginRight: 10 }}>
-            <TouchableOpacity onPress={onCancel}>
-              <Image style={{ width: 25, height: 25, tintColor: 'white' }} source={require('../Assets/Images/cancel_white.png')} />
-            </TouchableOpacity>
-          </View>
-        </View>
-        <FlatList
-          data={latestNews?.data}
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => (
-            <View style={{ paddingHorizontal: 10, marginTop: 10 }}>
-              <Text style={{ color: 'white', fontSize: 16 }} numberOfLines={1}>
-                {item?.title?.rendered}
-              </Text>
-            </View>
-          )}
-          keyExtractor={(item, index) => index.toString()}
-          ref={flatListRef}
-        />
+      <View style={{ paddingHorizontal: 10, marginTop: 10 }}>
+        <Text style={{ color: 'white', fontSize: 16 }} numberOfLines={1}>
+          {decode(item.title?.rendered)}
+        </Text>
       </View>
     );
   };
-  useEffect(() => {
-    const scrollInterval = setInterval(() => {
-      if (flatListRef.current) {
-        flatListRef.current.scrollToEnd({ animated: true });
-      }
-    }, 1000); // Adjust the interval time as needed
+  const BreakingNews = ({ onCancel }) => {
 
-    return () => clearInterval(scrollInterval);
-  }, []);
-
+    return (
+      <View style={{ backgroundColor: 'red', height: 80 }}>
+      <View style={{ flexDirection: 'row', height: 40, alignItems: 'center', marginLeft: 5 }}>
+        <View>
+          <Text style={{ color: 'white', fontWeight: '700', fontSize: 20 }}>Breaking News</Text>
+        </View>
+        <View style={{ marginLeft: 'auto', marginRight: 10 }}>
+          <TouchableOpacity onPress={onCancel}>
+            <Image style={{ width: 25, height: 25, tintColor: 'white' }} source={require('../Assets/Images/cancel_white.png')} />
+          </TouchableOpacity>
+        </View>
+      </View>
+      {latestNews && latestNews.data ? (
+        <Animated.FlatList
+        data={latestNews.data}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        renderItem={renderItem}
+        keyExtractor={(item, index) => index.toString()}
+        ref={flatListRef}
+        scrollEnabled={false}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+          { useNativeDriver: true }
+        )}
+        style={{
+          transform: [{ translateX: scrollX }],
+        }}
+      />
+      ) : (
+        <View>
+          {/* Placeholder or alternate content when data is undefined */}
+          <Text>No data available</Text>
+        </View>
+      )}
+    </View>
+    
+    );
+  };
+ 
   const storiesItem = ({ item, index }) => (
     <HomeStoriesItem
       item={item}
@@ -317,7 +368,7 @@ const Home = ({
       dispatch(getPunjabAction());
       dispatch(getAssemblyelectionAction());
       dispatch(getWebstoriesAction());
-
+      setIsBreakingNewsVisible(true);
 
 
     }, 3000);
@@ -334,6 +385,7 @@ const Home = ({
       <ScrollView style={commonstyles.scroll} refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }>
+       
         <View style={{ padding: 10 }}>
           {/* Spinner */}
           <Spinner
@@ -346,7 +398,7 @@ const Home = ({
           />
 
 
-          {/* Cinema */}
+          {/* city */}
           <HomeUI
             categoryName="शहर"
             data={cityData?.data}
@@ -368,7 +420,7 @@ const Home = ({
                 borderWidth: 1.5, borderRadius: 5, width: 60, justifyContent: 'center',
                 alignSelf: 'center', alignContent: 'center', height: 25, bottom: 10,
               }}
-                onPress={() => navigation.navigate('फोटो गैलरी')}>
+                onPress={() => navigation.navigate('फोटोगैलरी')}>
                 <View style={{
                 }}>
                   <Text style={{ textAlign: 'center', color: red_color, fontWeight: '800' }}>सभी देख</Text>
@@ -405,13 +457,7 @@ const Home = ({
             navigation={navigation}
           />
 
-          {/* ap */}
-          {/* <HomeUI
-            categoryName="छत्तीसगढ़"
-            data={chhattisgarhData?.data}
-            navigationScreen="छत्तीसगढ़"
-            navigation={navigation}
-          /> */}
+          
           {/* national */}
           <HomeUI
             categoryName="ब्लॉग"
@@ -440,13 +486,7 @@ const Home = ({
             navigationScreen="बिज़नेस"
             navigation={navigation}
           />
-          {/* Nri */}
-          {/* <HomeUI
-            categoryName="ఎన్‌ఆర్‌ఐ"
-            data={upData?.data}
-            navigationScreen="ఎన్‌ఆర్‌ఐ"
-            navigation={navigation}
-          /> */}
+         
           {/* Photo Gallery */}
           {/* <View>
             photo gallery  text
@@ -524,21 +564,7 @@ const Home = ({
             navigation={navigation}
           />
 
-          {/* khabarbebak */}
-          {/* <HomeUI
-            categoryName="జిందగీ"
-            data={khabarbebakData?.data}
-            navigationScreen="జిందగీ"
-            navigation={navigation}
-          /> */}
-          {/* Bathukamma */}
-          {/* <HomeUI
-            categoryName="బతుకమ్మ"
-            data={madhyapradeshData?.data}
-            navigationScreen="బతుకమ్మ"
-            navigation={navigation}
-          /> */}
-
+         
           {/* entertainment */}
           <HomeUI
             categoryName="एंटरटेनमेंट"
@@ -546,14 +572,7 @@ const Home = ({
             navigationScreen="एंटरटेनमेंट"
             navigation={navigation}
           />
-          {/* Vaasthu */}
-          {/* <HomeUI
-        categoryName="వాస్తు"
-        data={himacha?.data}
-        navigationScreen="వాస్తు"
-        navigation={navigation}
-      /> */}
-        </View>
+                 </View>
       </ScrollView >
     </SafeAreaView >
   );
