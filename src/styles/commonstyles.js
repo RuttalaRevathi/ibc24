@@ -52,6 +52,10 @@ export const commonstyles = StyleSheet.create({
     width: ITEM_WIDTH - 30,
     // borderRadius: 5,
   },
+  noimghome:{
+    height: 200,
+    width: ITEM_WIDTH - 30,
+  },
   CategorysliderGradient: {
     width: ITEM_WIDTH - 30, flex: 1.4, bottom: 0, borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
@@ -98,6 +102,8 @@ export const commonstyles = StyleSheet.create({
     // width: '100%',
     // height: '100%',
     // backgroundColor: whitecolor,
+     flex: 1,
+        justifyContent: 'center',
   },
   spinnerView: { justifyContent: 'center', alignItems: 'center', marginTop: 100 },
   spinnerText: { fontSize: 16, textAlign: 'center', color: '#000000' },

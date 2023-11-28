@@ -7,7 +7,7 @@ import {Dark_Gray, appThemeColor, blackcolor} from '../styles/commonstyles';
 export default function SubHeader(props, {navigation}) {
   return (
     <View style={HeaderStyle.subHeaderviewHeight}>
-      <View style={{flex: 0.3}}>
+      <View style={{flex: 0.3,backgroundColor:'pink'}}>
         <TouchableOpacity
           onPress={() => {
             props.leftBtnClick();

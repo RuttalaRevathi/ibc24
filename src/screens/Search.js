@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, ScrollView, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { BaseUrl, MenuUrl } from '../utilities/urls';
+import MarqueeText from 'react-native-marquee';
 
 const SearchScreen = ({ navigation }) => {
   const [text, setText] = useState('');
@@ -75,6 +76,18 @@ const SearchScreen = ({ navigation }) => {
     return (
       <ScrollView>
         <View>
+        <View style={{flex: 1,
+    justifyContent: 'center',}}>
+        <MarqueeText
+          style={{ fontSize: 24 }}
+          speed={1}
+          marqueeOnStart={true}
+          loop={true}
+          delay={500}
+        >
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry and typesetting industry.
+        </MarqueeText>
+      </View>
           <View style={{ flexDirection: 'row', margin: 5 }}>
             <View style={{ flexDirection: 'row', marginRight: 40, backgroundColor: 'lightgray', width: '100%', height: 50 }}>
               <View style={{ justifyContent: 'flex-start', marginLeft: 5, marginVertical: 15 }}>

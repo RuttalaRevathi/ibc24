@@ -2,13 +2,9 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, connect, useSelector } from 'react-redux';
-import FastImage from 'react-native-fast-image';
-import Carousel, { Pagination } from 'react-native-snap-carousel';
 import Spinner from 'react-native-loading-spinner-overlay';
-import Swiper from 'react-native-web-swiper';
 import InstaStory from 'react-native-insta-story';
 
-import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import getWebstoriesAction from '../redux/actions/getWebstoriesAction';
 
 import {
@@ -41,7 +37,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import HomeUI from '../components/HomeUI';
 import rasiPhalaluUI from '../components/rasiPhaluUI';
 
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Octicons from 'react-native-vector-icons/Octicons';
 import HomeCarouselItem from '../components/HomeCarouselItem';
 import HomeCartoonItem from '../components/HomeCartoonItem';
 import HomePhotogalleryItemTwo from '../components/HomePhotogalleryItemTwo';
@@ -86,7 +82,7 @@ import getReligionAction from '../redux/actions/getReligionAction';
 import { getAssemblyelectionAction } from '../redux/actions/getAssemblyelectionAction';
 import HomeStoriesItem from '../components/HomeStoriesItem';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import MarqueeText from 'react-native-marquee';
 
 const Home = ({
   navigation,
@@ -206,7 +202,7 @@ const Home = ({
   const flatListRef = useRef(null);
   const [isBreakingNewsVisible, setIsBreakingNewsVisible] = useState(true);
 
- 
+
   useEffect(() => {
     const totalWidth = latestNews?.data?.length * 200; // Assuming 200 is an average width for each item
     const endOffset = totalWidth - 200; // Subtracting 200 for the screen width
@@ -227,80 +223,65 @@ const Home = ({
 
     scroll();
   }, []);
-  useEffect(() => {
-    const loadBreakingNewsVisibility = async () => {
-      try {
-        const visibilityState = await AsyncStorage.getItem('breakingNewsVisibility');
-        if (visibilityState !== null) {
-          setIsBreakingNewsVisible(visibilityState === 'true');
-        }
-      } catch (error) {
-        console.error('Error loading breaking news visibility state:', error);
-      }
-    };
 
-    loadBreakingNewsVisibility();
-  }, []);
 
   // Function to toggle breaking news visibility and update AsyncStorage
   const handleCancelBreakingNews = () => {
     setIsBreakingNewsVisible(false); // Function to hide Breaking News
   };
 
- 
-  const renderItem = ({ item }) => {
+
+
+  const BreakingNews = ({ onCancel }) => {
     let decode = require('html-entities-decoder');
 
-    return (
-      <View style={{ paddingHorizontal: 10, marginTop: 10 }}>
-        <Text style={{ color: 'white', fontSize: 16 }} numberOfLines={1}>
-          {decode(item.title?.rendered)}
-        </Text>
-      </View>
-    );
-  };
-  const BreakingNews = ({ onCancel }) => {
 
     return (
       <View style={{ backgroundColor: 'red', height: 80 }}>
-      <View style={{ flexDirection: 'row', height: 40, alignItems: 'center', marginLeft: 5 }}>
-        <View>
-          <Text style={{ color: 'white', fontWeight: '700', fontSize: 20 }}>Breaking News</Text>
+        <View style={{ flexDirection: 'row', height: 40, alignItems: 'center', marginLeft: 5 }}>
+          <View>
+            <Text style={{ color: 'white', fontWeight: '700', fontSize: 20 }}>Breaking News</Text>
+          </View>
+          <View style={{ marginLeft: 'auto', marginRight: 10 }}>
+            <TouchableOpacity onPress={onCancel}>
+              <Image style={{ width: 25, height: 25, tintColor: 'white' }} source={require('../Assets/Images/cancel_white.png')} />
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={{ marginLeft: 'auto', marginRight: 10 }}>
-          <TouchableOpacity onPress={onCancel}>
-            <Image style={{ width: 25, height: 25, tintColor: 'white' }} source={require('../Assets/Images/cancel_white.png')} />
-          </TouchableOpacity>
+
+        <View style={{
+          flex: 1,
+          justifyContent: 'center',
+
+        }}>
+
+          <MarqueeText
+            style={{ marginStart: 10 }}
+            speed={0.1}
+            marqueeOnStart
+            loop
+            delay={10}
+          >
+            {/* Displaying news titles with images in MarqueeText */}
+            {latestNews?.data?.map((article, index) => (
+              // <View key={index} style={{ flexDirection: 'row', alignItems: 'center' }}>
+              //   <Image
+              //     source={require('../Assets/Images/cancel_white.png')} // Replace 'article.imageUrl' with the image URL from your data
+              //     style={{ width: 20, height: 20, marginRight: 10 }} // Adjust width, height, and margins as needed
+              //   />
+              <Text style={{ color: whitecolor, fontSize: 18 }}>
+                {decode(article.title.rendered)}
+              </Text>
+              // </View>
+            ))}
+          </MarqueeText>
+
         </View>
       </View>
-      {latestNews && latestNews.data ? (
-        <Animated.FlatList
-        data={latestNews.data}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
-        ref={flatListRef}
-        scrollEnabled={false}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-          { useNativeDriver: true }
-        )}
-        style={{
-          transform: [{ translateX: scrollX }],
-        }}
-      />
-      ) : (
-        <View>
-          {/* Placeholder or alternate content when data is undefined */}
-          <Text>No data available</Text>
-        </View>
-      )}
-    </View>
-    
+
     );
   };
- 
+
   const storiesItem = ({ item, index }) => (
     <HomeStoriesItem
       item={item}
@@ -385,7 +366,7 @@ const Home = ({
       <ScrollView style={commonstyles.scroll} refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }>
-       
+
         <View style={{ padding: 10 }}>
           {/* Spinner */}
           <Spinner
@@ -457,7 +438,7 @@ const Home = ({
             navigation={navigation}
           />
 
-          
+
           {/* national */}
           <HomeUI
             categoryName="ब्लॉग"
@@ -486,7 +467,7 @@ const Home = ({
             navigationScreen="बिज़नेस"
             navigation={navigation}
           />
-         
+
           {/* Photo Gallery */}
           {/* <View>
             photo gallery  text
@@ -564,7 +545,7 @@ const Home = ({
             navigation={navigation}
           />
 
-         
+
           {/* entertainment */}
           <HomeUI
             categoryName="एंटरटेनमेंट"
@@ -572,7 +553,7 @@ const Home = ({
             navigationScreen="एंटरटेनमेंट"
             navigation={navigation}
           />
-                 </View>
+        </View>
       </ScrollView >
     </SafeAreaView >
   );

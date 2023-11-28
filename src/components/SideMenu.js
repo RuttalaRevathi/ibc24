@@ -23,13 +23,13 @@ export default class SideMenu extends Component {
             shouldShowState: false,
         };
     }
-    CityNestedDrawerItem = () => {
+    toggleCityNestedDrawer = () => {
         this.setState((prevState) => ({
             shouldShowCity: !prevState.shouldShowCity,
         }));
     };
 
-    StateNestedDrawerItem = () => {
+    toggleStateNestedDrawer = () => {
         this.setState((prevState) => ({
             shouldShowState: !prevState.shouldShowState,
         }));
@@ -101,9 +101,7 @@ export default class SideMenu extends Component {
                                         <Text style={sideMenuStyle.text}>शहर</Text>
                                     </View>
                                     <TouchableOpacity
-                                        onPress={() => {
-                                            this.CityNestedDrawerItem(this.setState({ shouldShow: !this.state.shouldShow }));
-                                        }}>
+                                        onPress={this.toggleCityNestedDrawer}>
                                         <AntDesign
                                             name={this.state.shouldShow ? "upcircleo" : "downcircleo"}
                                             size={15}
@@ -115,7 +113,7 @@ export default class SideMenu extends Component {
                             )}
                             labelStyle={sideMenuStyle.text}
                         />
-                        {this.state.DrawerItem == true && (
+                        {this.state.shouldShowCity && (
                             <DrawerItem
                                 style={sideMenuStyle.item}
 
@@ -126,7 +124,7 @@ export default class SideMenu extends Component {
                                 }}
                             />
                         )}
-                        {this.state.DrawerItem == true && (
+                        {this.state.shouldShowCity && (
                             <DrawerItem
                                 style={sideMenuStyle.item}
 
@@ -137,7 +135,7 @@ export default class SideMenu extends Component {
                                 }}
                             />
                         )}
-                        {this.state.DrawerItem == true && (
+                        {this.state.shouldShowCity && (
                             <DrawerItem
                                 style={sideMenuStyle.item}
                                 label="जबलपुर"
@@ -147,7 +145,7 @@ export default class SideMenu extends Component {
                                 }}
                             />
                         )}
-                        {this.state.DrawerItem == true && (
+                        {this.state.shouldShowCity && (
                             <DrawerItem
                                 style={sideMenuStyle.item}
 
@@ -158,7 +156,7 @@ export default class SideMenu extends Component {
                                 }}
                             />
                         )}
-                        {this.state.DrawerItem == true && (
+                        {this.state.shouldShowCity && (
                             <DrawerItem
                                 style={sideMenuStyle.item}
 
@@ -169,7 +167,7 @@ export default class SideMenu extends Component {
                                 }}
                             />
                         )}
-                        {this.state.DrawerItem == true && (
+                        {this.state.shouldShowCity && (
                             <DrawerItem
                                 style={sideMenuStyle.item}
 
@@ -199,9 +197,7 @@ export default class SideMenu extends Component {
                                         <Text style={sideMenuStyle.text}>प्रदेश</Text>
                                     </View>
                                     <TouchableOpacity
-                                        onPress={() => {
-                                            this.StateNestedDrawerItem(this.setState({ shouldShow: !this.state.shouldShow }));
-                                        }}>
+                                       onPress={this.toggleStateNestedDrawer}>
                                         <AntDesign
                                             name={this.state.shouldShow ? "upcircleo" : "downcircleo"}
                                             size={15}
@@ -213,7 +209,7 @@ export default class SideMenu extends Component {
                             )}
                             labelStyle={sideMenuStyle.text}
                         />
-                        {this.state.StateItem == true && (
+                         {this.state.shouldShowState && (
                             <DrawerItem
                                 style={sideMenuStyle.item}
 
@@ -224,7 +220,7 @@ export default class SideMenu extends Component {
                                 }}
                             />
                         )}
-                        {this.state.StateItem == true && (
+                        {this.state.shouldShowState && (
                             <DrawerItem
                                 style={sideMenuStyle.item}
 
@@ -235,7 +231,7 @@ export default class SideMenu extends Component {
                                 }}
                             />
                         )}
-                        {this.state.StateItem == true && (
+                        {this.state.shouldShowState && (
                             <DrawerItem
                                 style={sideMenuStyle.item}
                                 label="बिहार"
@@ -245,7 +241,7 @@ export default class SideMenu extends Component {
                                 }}
                             />
                         )}
-                        {this.state.StateItem == true && (
+                        {this.state.shouldShowState && (
                             <DrawerItem
                                 style={sideMenuStyle.item}
 
@@ -256,7 +252,7 @@ export default class SideMenu extends Component {
                                 }}
                             />
                         )}
-                        {this.state.StateItem == true && (
+                        {this.state.shouldShowState && (
                             <DrawerItem
                                 style={sideMenuStyle.item}
 
@@ -267,7 +263,7 @@ export default class SideMenu extends Component {
                                 }}
                             />
                         )}
-                        {this.state.StateItem == true && (
+                        {this.state.shouldShowState && (
                             <DrawerItem
                                 style={sideMenuStyle.item}
 
@@ -278,7 +274,7 @@ export default class SideMenu extends Component {
                                 }}
                             />
                         )}
-                        {this.state.StateItem == true && (
+                        {this.state.shouldShowState && (
                             <DrawerItem
                                 style={sideMenuStyle.item}
 
@@ -289,7 +285,7 @@ export default class SideMenu extends Component {
                                 }}
                             />
                         )}
-                        {this.state.StateItem == true && (
+                        {this.state.shouldShowState && (
                             <DrawerItem
                                 style={sideMenuStyle.item}
 

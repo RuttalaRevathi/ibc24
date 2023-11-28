@@ -22,7 +22,7 @@ class HomeComponentOne extends React.PureComponent {
     this.state = {
     };
   }
- 
+
 
   sharecall = () => {
     const Link_Url = this.props.item?.link;
@@ -45,7 +45,7 @@ class HomeComponentOne extends React.PureComponent {
               });
             }}>
             <View>
-            
+
               {/* Title */}
               <View style={commonstyles.cateview}>
                 <Text
@@ -70,10 +70,16 @@ class HomeComponentOne extends React.PureComponent {
 
               {/* Image */}
               <View>
-                <Image
-                  source={{ uri: this.props?.item?.web_featured_image }}
+                {this.props?.item?.web_featured_image ? (
+                  <Image
+                    source={{ uri: this.props.item.web_featured_image }}
+                    style={commonstyles.HomeCateImg}
+                  />
+                ) : (
+                  <Image
                   style={commonstyles.HomeCateImg}
-                />
+                  source={require('../Assets/Images/noimage.png')}
+                />                )}
               </View>
             </View>
 
@@ -85,7 +91,7 @@ class HomeComponentOne extends React.PureComponent {
                 style={[commonstyles.catetext, { width: 140 }]}>
                 {this.props?.item?.category_name}</Text>
             </View>
-           
+
             <TouchableHighlight activeOpacity={0.1}
               underlayColor={Gary_Light}
               style={commonstyles.THighliet}

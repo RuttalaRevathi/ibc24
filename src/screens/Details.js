@@ -151,13 +151,19 @@ const Details = ({ navigation,
             </Text>
           </View>
           {/* Image */}
+         
           <View>
-            <Image
-              source={{ uri: route?.params?.item?.web_featured_image }}
-              style={commonstyles.Detailslargecard}
-            />
-          </View>
-
+                {route?.params?.item?.web_featured_image ? (
+                  <Image
+                    source={{ uri: route?.params?.item?.web_featured_image }}
+                    style={commonstyles.Detailslargecard}
+                  />
+                ) : (
+                  <Image
+                  style={{width:'100%',height:200}}
+                  source={require('../Assets/Images/noimage.png')}
+                />                )}
+              </View>
           
 
           
